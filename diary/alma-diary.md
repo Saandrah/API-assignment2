@@ -1,0 +1,1 @@
+8 september: Mutual boilerplate code such as creating directories and basic imports, on Alma's machine

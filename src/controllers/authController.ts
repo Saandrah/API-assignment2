@@ -13,7 +13,7 @@ export const login = async (req: Request, res: Response) => {
 
     const isLoggedIn = await bcrypt.compare(password, hashedPassword)
     if (username === 'admin' && password === '123') {
-        const accessToken = jwt.sign({username}, process.env.JWT_SECRET || "", {expiresIn: '7d'});
+        const accessToken = jwt.sign({username}, process.env.JWT_SECRET || "", {expiresIn: '7d'})
         console.log(accessToken)
 
 

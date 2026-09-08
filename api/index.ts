@@ -3,6 +3,9 @@ import express from 'express';
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import bookRoutes from "../src/routes/bookRoutes";
+import reviewRoutes from "../src/routes/reviewRoutes";
+import userRoutes from "../src/routes/userRoutes";
 
 
 const app = express();
@@ -79,6 +82,9 @@ import authRouter from '../src/routes/auth'
 import greetingRouter from '../src/routes/greetings'
 app.use('/api/auth', authRouter)
 app.use('/api/greetings', greetingRouter)
+app.use('/api/books', bookRoutes)
+app.use('/api/reviews', reviewRoutes)
+app.use('/api/users', userRoutes)
 
 
 
@@ -91,6 +97,3 @@ const PORT = 3000
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`)
 })
-
-
-
