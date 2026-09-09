@@ -22,7 +22,6 @@
 
 ### Helena
 
-- Lia call and Lia preparations
 - Individual project planning
 - Research tables and bootstrap
 
@@ -50,5 +49,13 @@ Weekly plan:
     published_year: 123
   },
   {....}
+
+- added book schema in models
+- added GET all books and GET book by ID in bookController  (prepared for inserting reviews)
+- added book routes and connected them in index.ts
+- smaller clean up in index.ts to get all imports at the top for better structure (liase with group in next catch up)
+- had an error connection with the server - did some error checks and made sure MONGODB_URL was correct
+- Tested both GET requests in Insmonia (both tests succesfuL, yey!)
+- Committed in Branch (did not want to commit until all files were correctly connected and I knew the code worked with Insomnia) 
 
   
