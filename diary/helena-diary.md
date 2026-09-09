@@ -37,3 +37,18 @@ Weekly plan:
 
 ### Helena
 
+- Discussing books and reviews with Sandra
+- Set up of mockdata in MongoDB compass 
+  
+  insertMany()
+  {
+    title: "title",
+    description: "Description.",
+    author: "author",
+    genres: ["genre", "genre"],
+    image: "/images/jpg",
+    published_year: 123
+  },
+  {....}
+
+  
