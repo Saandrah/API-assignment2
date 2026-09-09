@@ -1,16 +1,13 @@
-// DEPRICATED, use "userRoutes", delete after removing auth in main.ts
+// Author(s): Alma Isaksson
 import express from 'express'
-import {
-    login,
-    register,
-    logout
-} from '../controllers/authController'
+import { authController } from '../controllers/authController'
+import { verifyToken } from '../middleware/verifyToken';
+
 const router = express.Router()
 
-
-router.post('/login', login)
-router.post('/register', register)
-router.post('/logout', logout)
-
+router.get("/check", verifyToken, authController.checkAuthentication);
+router.post('/login', authController.login)
+router.post('/register', authController.register)
+router.post('/logout', authController.logout)
 
 export default router
