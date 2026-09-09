@@ -1,7 +1,7 @@
 // Author(s): Alma Isaksson
-import { Request, Response } from "express"
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
+import { Request, Response } from "express";
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import User from "../models/User";
 
 async function checkAuthentication(request: Request, response: Response) {
@@ -32,7 +32,7 @@ async function login(request: Request, response: Response) {
             return;
         };
 
-        const passwordMatchHashed = await bcrypt.compare(password, result?.password);
+        const passwordMatchHashed = await bcrypt.compare(password, result.password);
         if (!passwordMatchHashed) {
             response.status(401).json({message: "Invalid password"});
             return;
@@ -46,7 +46,7 @@ async function login(request: Request, response: Response) {
                 sameSite: "lax",
                 maxAge: 1000 * 60 * 60 * 24 * 7 // one week
             });
-            response.status(200).json({message: `Successfully signed in as "${username}"`, isSignedIn: true});
+            response.status(200).json({message: `Successfully logged in as "${username}"`, isLoggedIn: true});
             return;
         } else {
             response.status(401).json({message: "Invalid credentials"});
@@ -61,7 +61,7 @@ async function login(request: Request, response: Response) {
 async function logout(request: Request, response: Response) {
     try {
         response.clearCookie("accessToken");
-        response.status(200).json({message: "Successfully signed out"});
+        response.status(200).json({message: "Successfully logged out"});
     } catch (error: unknown) {
         response.status(500).json({message: "Server error during attempt of signing out"});
         console.error("logout error:", error);
