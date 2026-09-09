@@ -1,3 +1,4 @@
+// DEPRICATED, use "userController", delete after removing auth in main.ts
 import { Request, Response } from "express"
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'

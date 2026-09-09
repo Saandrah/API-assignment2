@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import User from "../models/User";
 
+// authentication
 async function checkAuthentication(request: Request, response: Response) {
     try {
         response.status(200).json({message: "Authentication OK"});
@@ -98,9 +99,30 @@ async function register(request: Request, response: Response) {
     };
 };
 
-export const userController = {
+// management
+async function fetchAllUsers(request: Request, response: Response) {
+    try {
+        const result = await User.find();
+        response.status(200).json({message: "Found users", result: result});
+    } catch (error: unknown) {
+        response.status(500).json({message: "Server error while fetching all users"});
+        console.log("fetchAllUsers error:", error);
+    };
+};
+
+const authentication = {
     checkAuthentication,
     signIn,
     signOut,
     register
+};
+
+const management = {
+    fetchAllUsers,
+    register
+};
+
+export const userController = {
+    authentication,
+    management
 };
