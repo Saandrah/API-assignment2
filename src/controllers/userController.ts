@@ -94,12 +94,29 @@ async function updateUser(request: Request, response: Response) {
         const result = await User.updateOne({_id: userId}, fieldsToUpdate);
         response.status(200).json({message: "User updated", result: result});
     } catch (error: unknown) {
+        console.error("updateUser error:", error);
         response.status(500).json({message: "Server error while updating user"});
     };
 };
 
+async function deleteUser(request: Request, response: Response) {
+    const id = request.params.id as String;
+
+    try {
+        const result = await User.deleteOne({_id: id});
+        if (result.deletedCount === 0) {
+            response.status(404).json({message: "User could not be found"});
+            return;
+        };
+        response.status(200).json({message: "Successfully deleted user", result});
+    } catch (error: unknown) {
+        console.error("deleteUser error:", error);
+        response.status(500).json({message: "Server error while delete user"});
+    };
+};
 export const userController = {
     fetchAllUsers,
     fetchUser,
-    updateUser
+    updateUser,
+    deleteUser
 };

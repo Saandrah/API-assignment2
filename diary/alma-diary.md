@@ -8,3 +8,4 @@
 - Write routes for said user authentication controllers.
 - Write "checkAdmin" middleware that gatekeeps unauthenticated visitors and authenticated users who does not have admin priviledges. Study material provided "verifyToken" were heavily referenced. Note: "decodedToken" is currently casted as "any", due to current limited techincal knowledge.
 - Write edit user with check admin middleware, where only an admin may edit existing users. Attempt to allow owner to edit themselves were made, though that wasn't implemented due to current limited technical knowledge. Note: an admin can lock themselves out from priviledges.
+- Write delete user with check adming middleware, where only an admin may delete existing users.
