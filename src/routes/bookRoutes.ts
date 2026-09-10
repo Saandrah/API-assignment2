@@ -4,6 +4,7 @@ import {
   getBookById,
   createBook,
   updateBook,
+  deleteBook,
 } from "../controllers/bookController";
 import { verifyToken } from "../middleware/verifyToken";
 import { checkAdmin } from "../middleware/checkAdmin";
@@ -14,6 +15,7 @@ const router = express.Router();
 router.get("/", getAllBooks);
 router.get("/:id", getBookById);
 router.post("/", verifyToken, createBook);
-router.patch("/:id", checkAdmin, updateBook);
+router.patch("/:id", verifyToken, checkAdmin, updateBook);
+router.delete("/:id", verifyToken, checkAdmin, deleteBook);
 
 export default router;

@@ -135,7 +135,6 @@ export const updateBook = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "Book not found" });
     }
 
-    // Update the book with the new values, keeping existing values if not provided
     if (title !== undefined) book.title = title;
     if (description !== undefined) book.description = description;
     if (author !== undefined) book.author = author;
@@ -163,6 +162,31 @@ export const updateBook = async (req: Request, res: Response) => {
 // DELETE - DELETE BOOK
 //-----------------------------------
 
-//-----------------------------------
-// EXPORTS
-//-----------------------------------
+//TO DO/ADD!!!!!!: When deleting a book, also delete all reviews for that book in the reviews collection
+
+export const deleteBook = async (req: Request, res: Response) => {
+  const bookId = req.params.id;
+
+  try {
+    const book = await Book.findById(bookId);
+    if (!book) {
+      return res.status(404).json({ error: "Book not found" });
+    }
+
+    // Delete all reviews for this book
+    //await Review.deleteMany({ book: bookId });
+
+    await book.deleteOne();
+
+    res.json({
+      message: "Book deleted successfully",
+      bookId: bookId,
+    });
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error
+        ? error.message
+        : "Unknown error - failed to delete book";
+    res.status(500).json({ error: message });
+  }
+};
