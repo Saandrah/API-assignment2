@@ -34,9 +34,11 @@ Weekly plan:
 - Thursday - Class - catch up after (merge depending on progress)
 - Friday - Class? - Group catch up
 
-### Helena
+### Discussion Sandra/Helena
 
 - Discussing books and reviews with Sandra
+
+### Helena
 - Set up of mockdata in MongoDB compass 
   
   insertMany()
@@ -56,6 +58,22 @@ Weekly plan:
 - smaller clean up in index.ts to get all imports at the top for better structure (liase with group in next catch up)
 - had an error connection with the server - did some error checks and made sure MONGODB_URL was correct
 - Tested both GET requests in Insmonia (both tests succesfuL, yey!)
-- Committed in Branch (did not want to commit until all files were correctly connected and I knew the code worked with Insomnia) 
+- Committed in Branch (did not want to commit until all files were correctly connected and I knew the code worked with Insomnia)
+
+## 10 sept
+
+### Meeting Alma/Helena
+- Planning meeting with Alma - merged our branches to main together
+
+### Helena
+
+- Implemented POST to create book with required field validation and genre string → array handling and added verifyToken to route
+- Created a re-useable function for POST and PATCH to handle arrays in genres
+- Merged latest changes from main into my branch after starting from the wrong base.
+- Implemented PATCH TO update a book by ID with optional fields and reused genre formatting function
+- Added admin protection for update and delete operations using checkAdmin middleware
+- Implemented DELETE /books/:id and added and prepared to be able to delete related reviews with a book once the reviews model is finalised.
+
+
 
   
