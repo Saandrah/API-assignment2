@@ -2,7 +2,7 @@
 
 const API_URL = "/api";
 
-async function getAuthStatus() {
+async function getAuthStatus() { // Any getters need to use await within an async function
     const response = await fetch(`${API_URL}/auth/check`, {
         method: "GET",
         credentials: "include"

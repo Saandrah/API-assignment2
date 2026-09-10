@@ -17,6 +17,12 @@ async function handleLogin() {
     console.log(response);
     console.log(data);
     console.log(response.status);
+    if (response.status === 200) {
+        window.location.href = "index.html";
+        return;
+    } else {
+        document.getElementById("AuthResponse").textContent = data.message;
+    };
 };
 
 async function handleLogout(event) {
@@ -27,9 +33,10 @@ async function handleLogout(event) {
         credentials: "include"
     });
     const data = await response.json();
-    console.log(response);
-    console.log(data);
-    console.log(response.status);
+    // console.log(response);
+    // console.log(data);
+    // console.log(response.status);
+    window.location.href = "index.html";
 };
 
 async function updateAuthForm() {
@@ -70,7 +77,9 @@ async function updateAuthForm() {
         if (authSubmitButton) authSubmitButton.value = "Login";
 
         const usernameInputLabel = document.createElement("label");
-        usernameInputLabel.textContent = "Username";
+
+        const usernameInputLableSpan = document.createElement("span");
+        usernameInputLableSpan.textContent = "Username";
 
         const usernameInputField = document.createElement("input");
         usernameInputField.type = "text";
@@ -78,17 +87,19 @@ async function updateAuthForm() {
         usernameInputField.addEventListener("change", updateDraft);
 
         const passwordInputLabel = document.createElement("label");
-        passwordInputLabel.textContent = "Password";
+
+        const passwordInputLabelSpan = document.createElement("span");
+        passwordInputLabelSpan.textContent = "Password";
 
         const passwordInputField = document.createElement("input");
-        passwordInputField.type = "text" //change later
+        passwordInputField.type = "password";
         passwordInputField.dataset.authInputType = "password";
         passwordInputField.addEventListener("change", updateDraft);
 
         authForm.addEventListener("submit", handleSubmit);
 
-        usernameInputLabel.append(usernameInputField);
-        passwordInputLabel.append(passwordInputField);
+        usernameInputLabel.append(usernameInputLableSpan, usernameInputField);
+        passwordInputLabel.append(passwordInputLabelSpan, passwordInputField);
         authInputFieldsContainer.append(usernameInputLabel, passwordInputLabel);
     };
 }

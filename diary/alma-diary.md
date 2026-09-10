@@ -14,3 +14,4 @@
 - Begin writing the client side and restructure its codebase to our taste. Architecture may be changed according to how our taste changes.
 - Write an app level initializer and check of auth status. Boolean determine what's displayed on page.
 - Write app level authentication checker and authentication page that responds to authentication status. Render different content depending on authentication status.
+- Redirect user to homepage after valid authentication (login or logout). Also display error messages if authentication input is invalid, such as wrong password or nonexisting username;
