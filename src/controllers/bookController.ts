@@ -7,6 +7,20 @@ import { Book } from "../models/Book";
 //import { Review } from "../models/Review";
 
 //-----------------------------------
+// REUSABLE CONTROLLER FUNCTIONS
+//-----------------------------------
+//A function to handle array of strings for genres, to be used in createBook and updateBook
+const handleGenresArray = (genres: string | string[]): string[] => {
+  if (Array.isArray(genres)) {
+    return genres;
+  }
+  if (typeof genres === "string") {
+    return genres.split(",").map((genre: string) => genre.trim());
+  }
+  return [];
+};
+
+//-----------------------------------
 // GET - GET ALL BOOKS
 //-----------------------------------
 export const getAllBooks = async (req: Request, res: Response) => {
@@ -75,9 +89,7 @@ export const createBook = async (req: Request, res: Response) => {
         .json({ error: "All required fields must be provided" });
     }
 
-    const genresArray = Array.isArray(genres)
-      ? genres
-      : genres.split(",").map((genre: string) => genre.trim());
+    const genresArray = handleGenresArray(genres);
 
     if (!genresArray || genresArray.length === 0) {
       return res
@@ -110,6 +122,42 @@ export const createBook = async (req: Request, res: Response) => {
 //-----------------------------------
 // PATCH - UPDATE BOOK
 //-----------------------------------
+//Update a book by ID including title, description, author, genres, image, published_year, all fields are optional, if not provided, the existing value will be kept
+
+export const updateBook = async (req: Request, res: Response) => {
+  const bookId = req.params.id;
+  const { title, description, author, genres, image, published_year } =
+    req.body;
+
+  try {
+    const book = await Book.findById(bookId);
+    if (!book) {
+      return res.status(404).json({ error: "Book not found" });
+    }
+
+    // Update the book with the new values, keeping existing values if not provided
+    if (title !== undefined) book.title = title;
+    if (description !== undefined) book.description = description;
+    if (author !== undefined) book.author = author;
+    if (genres !== undefined) {
+      book.genres = handleGenresArray(genres);
+    }
+    if (image !== undefined) book.image = image;
+    if (published_year !== undefined) book.published_year = published_year;
+
+    await book.save();
+    res.json({
+      message: "Book updated successfully",
+      book,
+    });
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error
+        ? error.message
+        : "Unknown error - failed to update book";
+    res.status(500).json({ error: message });
+  }
+};
 
 //-----------------------------------
 // DELETE - DELETE BOOK
