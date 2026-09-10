@@ -1,68 +1,106 @@
-import { Request, Response } from "express"
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
+// Author(s): Alma Isaksson
+import { Request, Response } from "express";
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import User from "../models/User";
 
-export const login = async (req: Request, res: Response) => {
-    const {username, password} = req.body
-    if (username === undefined || password === undefined) {
-        res.status(400).json({message: 'username and password are required'})
-        return
-    }
+async function checkAuthentication(request: Request, response: Response) {
+    try {
+        response.status(200).json({message: "Authentication OK"});
+    } catch (error: unknown) {
+        response.status(500).json({message: "Server error during attempt of checking authentication"});
+        console.error("checkAuthentication error:", error);
+    };
+};
 
-    const hashedPassword = "$2b$10$WoiGUJIU1IB5VarJOe468eae0wHxD53MI9PJta2ohnBam2R72Kc2S"
-
-    const isLoggedIn = await bcrypt.compare(password, hashedPassword)
-    if (username === 'admin' && password === '123') {
-        const accessToken = jwt.sign({username}, process.env.JWT_SECRET || "", {expiresIn: '7d'})
-        console.log(accessToken)
-
-
-        res.cookie('accessToken', accessToken, {
-            // Prevents client-side JavaScript from accessing the cookie (e.g. document.cookie).
-            // This protects against XSS attacks where malicious scripts try to steal the token.
-            httpOnly: true, // JS has no access to the cookie
-
-            // When true, the cookie is only sent over HTTPS connections.
-            // We enable this in production (where we use HTTPS) but disable it locally (HTTP).
-            secure: false, 
-
-            // Controls when the cookie is sent with cross-site requests.
-            // 'none': Cookie is sent on all cross-origin requests (required when frontend and API are on different domains in production). Requires secure: true.
-            // 'lax': Cookie is sent on same-site requests and top-level navigations (safe default for local development).
-            sameSite: 'lax',
-
-            // How long the cookie lives in the browser, in milliseconds.
-            // After this time the browser automatically deletes the cookie and the user must log in again.
-            maxAge: 1000 * 60 * 60 * 24 * 7 // Lives on for 7 days
-        })
-        res.json({message: 'You are logged in', isLoggedIn: isLoggedIn})
-        return;
-    } else {
-        res.status(401).json({message: 'username/password are wrong'})
-        return
-    }
-}
-
-export const register = async (req: Request, res: Response) => {
-    const {username, password} = req.body
-    if (username === undefined || password === undefined) {
-        res.status(400).json({message: 'username and password are required'})
-        return
-    }
+async function login(request: Request, response: Response) {
+    const { username, password } = request.body;
 
     try {
-        const hashedPassword = await bcrypt.hash(password, 10)
+        if (!username) {
+            response.status(401).json({message: "Username may not be blank"});
+            return;
+        };
+        if (!password) {
+            response.status(401).json({message: "Password may not be blank"});
+            return;
+        };
 
-        // The hashedPassword is the value that should be saved in the DB, not the plain password. For security reasons
-        res.json({message: "You are registered", username: username, password: password, hashedPassword: hashedPassword})
-    } catch (e) {
-        console.log(e)
+        const result = await User.findOne({username: username});
+        if (!result) {
+            response.status(401).json({message: "This user does not exist"});
+            return;
+        };
+
+        const passwordMatchHashed = await bcrypt.compare(password, result.password);
+        if (!passwordMatchHashed) {
+            response.status(401).json({message: "Invalid password"});
+            return;
+        };
+
+        if (result) {
+            const accessToken = jwt.sign({username}, process.env.JWT_SECRET || "", {expiresIn: "7d"});
+            response.cookie("accessToken", accessToken, {
+                httpOnly: true,
+                secure: false, // enable in production
+                sameSite: "lax",
+                maxAge: 1000 * 60 * 60 * 24 * 7 // one week
+            });
+            response.status(200).json({message: `Successfully logged in as "${username}"`, isLoggedIn: true});
+            return;
+        } else {
+            response.status(401).json({message: "Invalid credentials"});
+            return;
+        };
+    } catch (error: unknown) {
+        response.status(500).json({message: "Server error during attempt of signing in"});
+        console.error("login error:", error);
     }
+};
 
-    
-}
+async function logout(request: Request, response: Response) {
+    try {
+        response.clearCookie("accessToken");
+        response.status(200).json({message: "Successfully logged out"});
+    } catch (error: unknown) {
+        response.status(500).json({message: "Server error during attempt of signing out"});
+        console.error("logout error:", error);
+    };
+};
 
-export const logout = async (req: Request, res: Response) => {
-    res.clearCookie('accessToken')
-    res.json({message: "You are logged out"})
-}
+async function register(request: Request, response: Response) {
+    const {username, password, isAdmin} = request.body;
+    const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+    const passwordRegex = /^[a-zA-Z0-9_.-]{6,20}$/;
+
+    try {
+        if (username === undefined || !usernameRegex.test(username)) {
+            response.status(400).json({message: "Username must be between 3 - 20 characters and may contain letters, numbers, and underscore"});
+            return;
+        };
+        if (password === undefined || !passwordRegex.test(password)) {
+            response.status(400).json({message: "Password must be between 6 - 20 characters and may contain letters, numbers, and these letters: - _ . (hyphen, underscore, dot)"});
+            return;
+        };
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const existingAccount = await User.findOne({username: username});
+        if (existingAccount) {
+            response.status(409).json({message: "This username is already taken"});
+            return;
+        };
+
+        const result = await User.insertOne({ username: username, password: hashedPassword, is_admin: isAdmin});
+        response.status(201).json({message: `A new account under the name of "${username}" has been created`, result: result});
+    } catch (error: unknown) {
+        response.status(500).json({message: "Server error during attempt of registration"});
+        console.error("register error:", error);
+    };
+};
+
+export const authController = {
+    checkAuthentication,
+    login,
+    logout,
+    register
+};
