@@ -52,6 +52,60 @@ export const getBookById = async (req: Request, res: Response) => {
 //-----------------------------------
 // POST - CREATE BOOK
 //-----------------------------------
+//Create a new book including title, description, author, genres, image, published_year
+//Validation for required fields
+// If any of the required fields are missing, return an error
+//genres should be an array of strings
+//Use split, map and trim to convert genres string to array of strings for user friendly input
+
+export const createBook = async (req: Request, res: Response) => {
+  const { title, description, author, genres, image, published_year } =
+    req.body;
+  try {
+    if (
+      !title ||
+      !description ||
+      !author ||
+      !genres ||
+      !image ||
+      !published_year
+    ) {
+      return res
+        .status(400)
+        .json({ error: "All required fields must be provided" });
+    }
+
+    const genresArray = Array.isArray(genres)
+      ? genres
+      : genres.split(",").map((genre: string) => genre.trim());
+
+    if (!genresArray || genresArray.length === 0) {
+      return res
+        .status(400)
+        .json({ error: "Genres must contain at least one value" });
+    }
+    const book = new Book({
+      title,
+      description,
+      author,
+      genres: genresArray,
+      image,
+      published_year,
+    });
+
+    await book.save();
+    res.status(201).json({
+      message: "Book created successfully",
+      book,
+    });
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error
+        ? error.message
+        : "Unknown error - failed to create book";
+    res.status(500).json({ error: message });
+  }
+};
 
 //-----------------------------------
 // PATCH - UPDATE BOOK
