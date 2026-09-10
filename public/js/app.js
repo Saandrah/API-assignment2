@@ -7,15 +7,22 @@ async function getAuthStatus() {
         method: "GET",
         credentials: "include"
     });
-    if (response.status === 403) return false;
+    if (response.status === 401 || response.status === 403) return false;
     if (response.status === 200) return true;
+    console.log(response.status);
+    console.log(isAuthenticated);
 };
 
-function initialize() {
-    const linkToAuth = document.getElementById("linkToAuth");
-    if (getAuthStatus()) {
-        if (linkToAuth) linkToAuth.textContent = "Logout";
+async function updateHeader() {
+    if (await getAuthStatus()) {
+        document.getElementById("linkToAuth").textContent = "Logout";
+    } else {
+        document.getElementById("linkToAuth").textContent = "Login";
     };
 };
 
-initialize();
+function initializeApp() {
+    updateHeader();
+};
+
+initializeApp();
