@@ -6,6 +6,7 @@ import {
   updateBook,
 } from "../controllers/bookController";
 import { verifyToken } from "../middleware/verifyToken";
+import { checkAdmin } from "../middleware/checkAdmin";
 
 const router = express.Router();
 
@@ -13,6 +14,6 @@ const router = express.Router();
 router.get("/", getAllBooks);
 router.get("/:id", getBookById);
 router.post("/", verifyToken, createBook);
-router.patch("/:id", verifyToken, updateBook);
+router.patch("/:id", checkAdmin, updateBook);
 
 export default router;
