@@ -16,6 +16,7 @@ async function getAuthStatus() { // Any getters need to use await within an asyn
 async function updateHeader() {
     if (await getAuthStatus()) {
         document.getElementById("linkToAuth").textContent = "Logout";
+        document.getElementById("linkToRegister").remove();
     } else {
         document.getElementById("linkToAuth").textContent = "Login";
     };

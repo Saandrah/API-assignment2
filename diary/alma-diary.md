@@ -16,3 +16,4 @@
 - Write app level authentication checker and authentication page that responds to authentication status. Render different content depending on authentication status.
 - Redirect user to homepage after valid authentication (login or logout). Also display error messages if authentication input is invalid, such as wrong password or nonexisting username;
 - Write admin panel page that rejets unauthenticated users and users who don't have admin priviledges.
+- Write registration page, seperate from authenticate page for better management. Failed registration display error message, successful registration login and redirect to landing page.

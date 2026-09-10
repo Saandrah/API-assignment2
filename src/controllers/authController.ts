@@ -69,7 +69,7 @@ async function logout(request: Request, response: Response) {
 };
 
 async function register(request: Request, response: Response) {
-    const {username, password, isAdmin} = request.body;
+    const {username, password, is_admin} = request.body;
     const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
     const passwordRegex = /^[a-zA-Z0-9_.-]{6,20}$/;
 
@@ -90,7 +90,7 @@ async function register(request: Request, response: Response) {
             return;
         };
 
-        const result = await User.insertOne({ username: username, password: hashedPassword, is_admin: isAdmin});
+        const result = await User.insertOne({ username: username, password: hashedPassword, is_admin: is_admin});
         response.status(201).json({message: `A new account under the name of "${username}" has been created`, result: result});
     } catch (error: unknown) {
         response.status(500).json({message: "Server error during attempt of registration"});
