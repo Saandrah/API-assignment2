@@ -14,14 +14,12 @@ const reviewSchema = new Schema({
         min: 1,
         max: 5
     },
-
     created_at: {
         type: Date,
         default: Date.now
     },
-
     review_id: {
-        type:String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     }
 
