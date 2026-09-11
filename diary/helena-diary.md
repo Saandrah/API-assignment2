@@ -1,6 +1,6 @@
 ## 8 sept 
 
-### Group meeting 
+### GROUP MEETING - PLANING & INSTALLATION
 
 - Set up of Github repo
 - Initiating project
@@ -14,7 +14,7 @@
 - Regular catch up meetings where we can compare code and merge together
 - Joint set up, after work in individual branches
 
-### Meeting Alma/Helena
+### Meeting Alma/Helena - Code set up
 
 - Reading and discussing assignment in more detail
 - Call with Sibar to clarify assignment details
@@ -27,7 +27,7 @@
 
 ## 9 sept 
 
-### Group meeting
+### GROUP MEETING - PLANNING
 
 Weekly plan:
 - Wednesday - Individual coding - reach out on teams if needed
@@ -53,7 +53,7 @@ Weekly plan:
   {....}
 
 - added book schema in models
-- added GET all books and GET book by ID in bookController  (prepared for inserting reviews)
+- added GET all books and GET book by ID in bookController (prepared for inserting reviews)
 - added book routes and connected them in index.ts
 - smaller clean up in index.ts to get all imports at the top for better structure (liase with group in next catch up)
 - had an error connection with the server - did some error checks and made sure MONGODB_URL was correct
@@ -73,6 +73,19 @@ Weekly plan:
 - Implemented PATCH TO update a book by ID with optional fields and reused genre formatting function
 - Added admin protection for update and delete operations using checkAdmin middleware
 - Implemented DELETE /books/:id and added and prepared to be able to delete related reviews with a book once the reviews model is finalised.
+
+## 11 sept
+
+### GROUP MEETING - PLANNING CLIENT & CODING
+
+- Update on progress
+- Discussing Client Structure and html pages set up . Admin - to create/update/delete book or user. User - to create reviews (admin to update or delete)
+- Setting up gloabls.js (check if admin, check if user, update navigation bar if logged in our logged out)
+- adding the required files to work in as discussed
+
+### Helena 
+
+- check Insomnia (couldn't test without username and password) got info from ALma
 
 
 
