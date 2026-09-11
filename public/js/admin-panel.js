@@ -1,7 +1,7 @@
 // Author(s): Alma Isaksson
-async function checkUserIsAdmin2() {
+async function gatekeepNonAdmin() {
     if (await checkUserIsAdmin()) {
-        console.log("access granted");
+        // console.log("access granted");
         return;
     } else {
         window.location.href = "index.html";
@@ -9,4 +9,4 @@ async function checkUserIsAdmin2() {
     };
 };
 
-checkUserIsAdmin2();
+gatekeepNonAdmin();
