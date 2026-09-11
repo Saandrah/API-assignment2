@@ -2,7 +2,7 @@
 
 const API_URL = "/api";
 
-async function getAuthStatus() { // Any getters need to use await within an async function
+async function checkUserIsAuthenticated() { // Any getters need to use await within an async function
     const response = await fetch(`${API_URL}/auth/check`, {
         method: "GET",
         credentials: "include"
@@ -13,8 +13,21 @@ async function getAuthStatus() { // Any getters need to use await within an asyn
     console.log(isAuthenticated);
 };
 
-async function updateHeader() {
-    if (await getAuthStatus()) {
+async function checkUserIsAdmin() {
+    const response = await fetch(`${API_URL}/auth/checkadmin`, {
+        method: "GET",
+        credentials: "include"
+    });
+    // console.log(response.status);
+    if (response.status === 200) {
+        return true;
+    } else {
+        return false;
+    };
+}
+
+async function updateNavbar() {
+    if (await checkUserIsAuthenticated()) {
         document.getElementById("linkToAuth").textContent = "Logout";
         document.getElementById("linkToRegister").remove();
     } else {
@@ -23,7 +36,7 @@ async function updateHeader() {
 };
 
 function initializeApp() {
-    updateHeader();
+    updateNavbar();
 };
 
 initializeApp();

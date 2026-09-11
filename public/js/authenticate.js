@@ -68,7 +68,7 @@ async function updateAuthForm() {
     const authInputFieldsContainer = authForm.querySelector("#authInputFieldsContainer");
     const authSubmitButton = authForm.querySelector("#authSubmitButton");
 
-    if (await getAuthStatus()) { // create logout form for authenticated users
+    if (await checkUserIsAuthenticated()) { // create logout form for authenticated users
         if (authLegend) authLegend.textContent = "Logout";
         if (authSubmitButton) authSubmitButton.value = "Logout";
         authForm.addEventListener("click", handleLogout);
