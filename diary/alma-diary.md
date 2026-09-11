@@ -1,3 +1,12 @@
+# Alma Diary
+- [AI disclosure](#ai-disclosure)
+- [Daily progress documentation](#daily-progress-documentaiton)
+
+
+## AI Disclosure
+In the era of artificial intelligence and LLM:s, I remain committed to disclose my own use of AI for this codebase. This disclosure cover the code I have written but does not represent the whole codebase. Chatbots, specifically Claude may have been involved as a documentation lookup tool, when tranditional documentation and forums fail to provide the answers needed, or to spot bugs I failed to detect. However, my use of Claude have been minimal, and no line of code is AI-generated or implemented without fully understanding.
+
+## Daily progress documentaiton
 8 september:
 - During mutual voice call writing boilerplate code such as creating directories and basic imports, on Alma's machine.
 
@@ -17,3 +26,4 @@
 - Redirect user to homepage after valid authentication (login or logout). Also display error messages if authentication input is invalid, such as wrong password or nonexisting username;
 - Write admin panel page that rejets unauthenticated users and users who don't have admin priviledges.
 - Write registration page, seperate from authenticate page for better management. Failed registration display error message, successful registration login and redirect to landing page.
+- Write admin users panel with functionality to edit users. Progress isn't complete, and its current structure turned out more messy and hard to read than I'd hoped. It is still functional however, and I'm proud I was able to achieve it without any help of Claude (except spotting a couple of typos), so cleaning it up is not a priority.
