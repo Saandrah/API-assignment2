@@ -13,3 +13,18 @@
   background: #d1e7dd;
   color: #0f5132;
 }
+
+.book-thumb {
+  width: 104.75px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.book-shadow {
+  box-shadow: 0 3px 8px rgba(0,0,0,0.75);
+}
+
+
+
+

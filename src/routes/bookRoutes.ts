@@ -14,7 +14,7 @@ const router = express.Router();
 // Routers
 router.get("/", getAllBooks);
 router.get("/:id", getBookById);
-router.post("/", verifyToken, createBook);
+router.post("/", verifyToken, checkAdmin, createBook);
 router.patch("/:id", verifyToken, checkAdmin, updateBook);
 router.delete("/:id", verifyToken, checkAdmin, deleteBook);
 
