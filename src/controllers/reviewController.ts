@@ -36,16 +36,17 @@ export const fetchReviewById = async (req: Request, res: Response) => {
 
 
 export const createReview = async (req: Request, res: Response) => {
-    const { name, content, rating, review_id } = req.body;
+    try {
+        const { name, content, rating, review_id } = req.body;
 
-    const review = new Review({
-        name,
-        content,
-        rating,
-        review_id
-    });
+        const review = new Review({
+            name,
+            content,
+            rating,
+            review_id
+        });
 
-    await review.save();
+        await review.save();
 
     res.status(201).json(review);
 
@@ -57,6 +58,7 @@ export const createReview = async (req: Request, res: Response) => {
 
         res.status(500).json({ error: message });
     }
+};
 
 // -----------------------------------
 // PATCH - UPDATE REVIEW

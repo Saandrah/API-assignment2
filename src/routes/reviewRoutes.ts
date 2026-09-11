@@ -9,12 +9,13 @@ import {
     updateReview,
     deleteReview
 } from "../controllers/reviewController";
+import { verifyToken } from "../middleware/verifyToken";
 
 router.get("/", fetchAllReviews);
 router.get("/:id", fetchReviewById);
 router.post("/", createReview);
-router.patch("/:id", updateReview);
-router.delete("/:id", deleteReview);
+router.patch("/:id", verifyToken, updateReview);
+router.delete("/:id", verifyToken, deleteReview);
 
 export default router;
 
