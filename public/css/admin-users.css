@@ -1,0 +1,22 @@
+.notification-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 15px;
+    left: 0;
+    width: 100%;
+}
+
+.notification-item {
+    background-color: white;
+    padding: 1rem;
+    border: 1px solid black;
+    pointer-events: none;
+    font-weight: 600;
+}
+
+.positive {
+    color: green;
+}

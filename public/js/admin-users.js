@@ -117,9 +117,13 @@ async function exitSaveEditMode(userTargetId) {
     const data = await response.json();
     console.log(response.status);
     console.log(data);
-    if (response.status !== 200) return;
+    if (response.status !== 200) { // failed due to error
+        handleNotify(data.message);
+        return;
+    };
 
     if (newUsername) usersData.set(userTargetId, {...usersData.get(userTargetId), username: newUsername});
+    handleNotify(data.message, true);
     exitCancelEditMode(userTargetId);
 };
 
@@ -162,6 +166,19 @@ async function fetchUsers() {
         if (usersListTable) usersListTable.append(newUserRow);
         usersElements.set(user._id, newUserRow);
     };
+};
+
+function handleNotify(message, positive = false) {
+    const notificationContainer = document.getElementById("notificationContainer");
+
+    const newNotification = document.createElement("p");
+    newNotification.textContent = message;
+    newNotification.className = "notification-item";
+    if (positive) newNotification.classList.add("positive");
+    if (notificationContainer) notificationContainer.append(newNotification);
+    setTimeout(() => {
+        newNotification.remove();
+    }, 3000);
 };
 
 gatekeepNonAdmin();
