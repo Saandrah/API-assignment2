@@ -133,6 +133,25 @@ async function exitSaveEditMode(userTargetId) {
     exitCancelEditMode(userTargetId);
 };
 
+async function handleDeleteUser(userTargetId, elementToDelete) {
+    const response = await fetch(`${API_URL}/users/${userTargetId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "include"
+    });
+    const data = await response.json();
+    console.log(data);
+    console.log(response.status);
+    if (response.status !== 200) {
+        handleNotify(data.message);
+        return;
+    };
+    handleNotify(data.message);
+    elementToDelete.remove();
+};
+
 async function fetchUsers() {
     const usersListTable = document.getElementById("usersListTable");
 
@@ -171,6 +190,7 @@ async function fetchUsers() {
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = `Delete ${user.username}`;
+        deleteButton.addEventListener("click", () => {handleDeleteUser(user._id, newUserRow)});
         editButtonsContainer.append(deleteButton);
 
         newUserRow.append(usernameData, passwordData, isAdminData);
