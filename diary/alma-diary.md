@@ -27,3 +27,7 @@ In the era of artificial intelligence and LLM:s, I remain committed to disclose 
 - Write admin panel page that rejets unauthenticated users and users who don't have admin priviledges.
 - Write registration page, seperate from authenticate page for better management. Failed registration display error message, successful registration login and redirect to landing page.
 - Write admin users panel with functionality to edit users. Progress isn't complete, and its current structure turned out more messy and hard to read than I'd hoped. It is still functional however, and I'm proud I was able to achieve it without any help of Claude (except spotting a couple of typos), so cleaning it up is not a priority.
+
+13 september:
+- Write notification view for admin user management panel.
+- Rewrite admin users to fulfill the requirement of letting anyone browse existing accounts, while keeping the already written work of full CRUD operations, some elements are gatekept from non-admins.

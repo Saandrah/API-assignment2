@@ -1,13 +1,19 @@
 // Author(s): Alma Isaksson
+// Originally written for admins only, it's been remade to allow non-admins to browse existing accounts, but gatekeeping CRUD from non admins
+let userIsAdmin = false; // local boolean so that api request don't happen a million times during loops
+
 const usersData = new Map();
 const editUsersData = new Map();
 const usersElements = new Map();
 
 async function gatekeepNonAdmin() {
-    if (await checkUserIsAdmin()) {
+    if (await checkUserIsAdmin()) { // checkUserIsAdmin only checked once then stored locally to save API calls
+        userIsAdmin = true;
         return;
     } else {
-        window.location.href = "index.html";
+        // window.location.href = "index.html";
+        document.getElementById("linkToAdminPanel").remove();
+        document.getElementById("editDeleteTHead").remove();
         return;
     };
 };
@@ -157,12 +163,18 @@ async function fetchUsers() {
 
         const editButtonsContainer = document.createElement("td");
         editButtonsContainer.dataset.datatype = "editButtonsContainer";
+
         const editButton = document.createElement("button");
         editButton.textContent = `Edit ${user.username}`;
         editButton.addEventListener("click", () => {enterEditMode(user._id)});
         editButtonsContainer.append(editButton);
 
-        newUserRow.append(usernameData, passwordData, isAdminData, editButtonsContainer);
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = `Delete ${user.username}`;
+        editButtonsContainer.append(deleteButton);
+
+        newUserRow.append(usernameData, passwordData, isAdminData);
+        if (userIsAdmin) newUserRow.append(editButtonsContainer);
         if (usersListTable) usersListTable.append(newUserRow);
         usersElements.set(user._id, newUserRow);
     };
