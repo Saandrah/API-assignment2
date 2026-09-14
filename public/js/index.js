@@ -5,23 +5,21 @@
 
 const booksContainer = document.getElementById("book-container");
 
-// -------------------------
-// FETCH BOOKS
-// -------------------------
+// -------------------------------------------------
+// FETCH BOOKS USING GLOBAL FUNCTION FROM global.js
+// ---------------------------------------------------
 
-async function fetchBooks() {
-  try {
-    const response = await fetch(API_URL + "/books");
-    const books = await response.json();
+async function loadBooks() {
+  const books = await fetchBooks();
 
-    renderBooks(books);
-  } catch (error) {
-    console.error("Error fetching books:", error);
+  if (books.length === 0) {
     booksContainer.innerHTML = "Something went wrong. Please try again later!";
+    return;
   }
-}
 
-fetchBooks();
+  renderBooks(books);
+}
+loadBooks();
 
 // ---------------------------
 // RENDER BOOKS
