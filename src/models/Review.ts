@@ -21,7 +21,13 @@ const reviewSchema = new Schema({
     review_id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
-    }
+    },
+
+    book_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Book",
+    required: true
+}
 
 });
 
