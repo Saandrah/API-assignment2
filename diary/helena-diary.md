@@ -85,7 +85,18 @@ Weekly plan:
 
 ### Helena 
 
-- check Insomnia (couldn't test without username and password) got info from ALma
+- check Insomnia (couldn't test without username and password) got info from Alma - testing succesful
+- Build frontend to display books on index.html. Added imgage and button aligned to the left and title with details on the right
+- Added bootstrap for layout and basic styling and added some extra styling in CSS to get desired look and layout
+
+## 14 sept 
+
+### GROUP MEETING
+
+- Merging branches and discussed project details
+
+### Helena 
+
 
 
 
