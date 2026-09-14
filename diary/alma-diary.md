@@ -32,3 +32,10 @@ In the era of artificial intelligence and LLM:s, I remain committed to disclose 
 - Write notification view for admin user management panel.
 - Rewrite admin users to fulfill the requirement of letting anyone browse existing accounts, while keeping the already written work of full CRUD operations, some elements are gatekept from non-admins.
 - Write delete functionality. NOTE: Rough around the corners; A page refresh after performing deletion recognize the admin as non-admin until refreshing one more time; Deleting one's own account, then attempting to delete another return a 404 error. Patching these flaws are not prioritized as they're not considered important for the scope of this assignment and does not affect the overall functionality.
+
+14 september:
+- Patch Users.ts by giving username `unique: true` and `trim: true`.
+- Add some styling to the admin manage users panel.
+- Document in readme how to access the admin panel through URL.
+- Add some styling to the authenticate page (login & logout).
+- Add some styling to the register page.

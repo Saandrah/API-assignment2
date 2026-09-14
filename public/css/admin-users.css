@@ -9,14 +9,29 @@
     width: 100%;
 }
 
-.notification-item {
-    background-color: white;
-    padding: 1rem;
-    border: 1px solid black;
-    pointer-events: none;
-    font-weight: 600;
+table .username,
+table .password {
+    width: 20%;
 }
 
-.positive {
-    color: green;
+table tr {
+    height: 40px;
+}
+
+.edit-delete-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.edit-delete-wrapper button {
+    width: 100%;
+}
+
+.edit-mode {
+    justify-content: left;
+}
+
+.edit-mode button {
+    width: fit-content;
 }

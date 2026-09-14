@@ -24,7 +24,7 @@ function enterEditMode(userTargetId) {
 
     const usernameElement = targetRow.querySelector(`[data-datatype=username]`);
     const usernameInput = document.createElement("input");
-    usernameInput.placeholder = currentUserData.username
+    usernameInput.placeholder = currentUserData.username;
     usernameElement.replaceChildren(usernameInput);
     usernameElement.addEventListener("change", (event) => {
         const currentDraft = editUsersData.get(userTargetId);
@@ -52,12 +52,15 @@ function enterEditMode(userTargetId) {
     });
 
     const editButtonsContainer = targetRow.querySelector(`[data-datatype=editButtonsContainer]`);
+    editButtonsContainer.classList.add("edit-mode");
     const exitCancelButton = document.createElement("button");
     exitCancelButton.textContent = "Cancel & discard changes";
+    exitCancelButton.classList.add("btn", "btn-primary");
     exitCancelButton.addEventListener("click", () => {exitCancelEditMode(userTargetId)});
 
     const exitSaveButton = document.createElement("button");
     exitSaveButton.textContent = "Save changes";
+    exitSaveButton.classList.add("btn", "btn-primary");
     exitSaveButton.addEventListener("click", () => {exitSaveEditMode(userTargetId)})
 
     editButtonsContainer.replaceChildren(exitCancelButton, exitSaveButton);
@@ -83,14 +86,29 @@ function exitCancelEditMode(userTargetId) {
     };
     isAdminData.dataset.datatype = "isAdmin";
 
+    const registrationDateData = document.createElement("td");
+    const date = new Date(originalUserData.created_at);
+    const dateFormated = new Intl.DateTimeFormat("en-CA").format(date);
+    registrationDateData.textContent = dateFormated;
+    registrationDateData.dataset.datatype = "createdAt";
+
     const editButtonsContainer = document.createElement("td");
     editButtonsContainer.dataset.datatype = "editButtonsContainer";
+    editButtonsContainer.classList.add("edit-delete-wrapper");
+
     const editButton = document.createElement("button");
     editButton.textContent = `Edit ${originalUserData.username}`;
+    editButton.classList.add("btn", "btn-primary");
     editButton.addEventListener("click", () => {enterEditMode(originalUserData._id)});
-    editButtonsContainer.append(editButton);
 
-    targetRow.replaceChildren(usernameData, passwordData, isAdminData, editButtonsContainer);
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = `Delete ${originalUserData.username}`;
+    deleteButton.classList.add("btn", "btn-danger", "delete-button");
+    deleteButton.addEventListener("click", () => {handleDeleteUser(originalUserData._id, targetRow)});
+
+    editButtonsContainer.append(editButton, deleteButton);
+    targetRow.replaceChildren(usernameData, passwordData, isAdminData, registrationDateData);
+    if (userIsAdmin) targetRow.append(editButtonsContainer);
 
     editUsersData.delete(userTargetId);
 };
@@ -163,13 +181,16 @@ async function fetchUsers() {
 
         const newUserRow = document.createElement("tr");
         newUserRow.dataset.userId = user._id;
+        newUserRow.classList.add("w-100", "border", "rounded");
 
         const usernameData = document.createElement("td");
         usernameData.textContent = user.username;
+        usernameData.className = "username";
         usernameData.dataset.datatype = "username";
 
         const passwordData = document.createElement("td");
         passwordData.textContent = "******";
+        passwordData.className = "password";
         passwordData.dataset.datatype = "password";
 
         const isAdminData = document.createElement("td");
@@ -180,20 +201,29 @@ async function fetchUsers() {
         };
         isAdminData.dataset.datatype = "isAdmin";
 
+        const registrationDateData = document.createElement("td");
+        const date = new Date(user.created_at);
+        const dateFormated = new Intl.DateTimeFormat("en-CA").format(date);
+        registrationDateData.textContent = dateFormated;
+        registrationDateData.dataset.datatype = "createdAt";
+
         const editButtonsContainer = document.createElement("td");
         editButtonsContainer.dataset.datatype = "editButtonsContainer";
+        editButtonsContainer.classList.add("edit-delete-wrapper");
 
         const editButton = document.createElement("button");
         editButton.textContent = `Edit ${user.username}`;
+        editButton.classList.add("btn", "btn-primary");
         editButton.addEventListener("click", () => {enterEditMode(user._id)});
         editButtonsContainer.append(editButton);
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = `Delete ${user.username}`;
+        deleteButton.classList.add("btn", "btn-danger", "delete-button");
         deleteButton.addEventListener("click", () => {handleDeleteUser(user._id, newUserRow)});
         editButtonsContainer.append(deleteButton);
 
-        newUserRow.append(usernameData, passwordData, isAdminData);
+        newUserRow.append(usernameData, passwordData, isAdminData, registrationDateData);
         if (userIsAdmin) newUserRow.append(editButtonsContainer);
         if (usersListTable) usersListTable.append(newUserRow);
         usersElements.set(user._id, newUserRow);
@@ -205,8 +235,11 @@ function handleNotify(message, positive = false) {
 
     const newNotification = document.createElement("p");
     newNotification.textContent = message;
-    newNotification.className = "notification-item";
-    if (positive) newNotification.classList.add("positive");
+    newNotification.classList.add("alert", "alert-danger");
+    if (positive) {
+        newNotification.classList.remove("alert-danger");
+        newNotification.classList.add("alert-success");
+    };
     if (notificationContainer) notificationContainer.append(newNotification);
     setTimeout(() => {
         newNotification.remove();
