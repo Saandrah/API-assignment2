@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 
 import { Review } from "../models/Review"
+import mongoose from "mongoose";
 
 // -----------------------------------
 // GET - GET ALL REVIEWS
@@ -37,13 +38,15 @@ export const fetchReviewById = async (req: Request, res: Response) => {
 
 export const createReview = async (req: Request, res: Response) => {
     try {
-        const { name, content, rating, review_id } = req.body;
+        
+        const { name, content, rating, book_id } = req.body;
 
         const review = new Review({
             name,
             content,
             rating,
-            review_id
+            review_id: new mongoose.Types.ObjectId(),
+           book_id
         });
 
         await review.save();

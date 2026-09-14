@@ -4,7 +4,7 @@
 
 import { Request, Response } from "express";
 import { Book } from "../models/Book";
-//import { Review } from "../models/Review";
+import { Review } from "../models/Review";
 
 //-----------------------------------
 // REUSABLE CONTROLLER FUNCTIONS
@@ -48,12 +48,10 @@ export const getBookById = async (req: Request, res: Response) => {
     if (!book) {
       return res.status(404).json({ error: "Book not found" });
     }
+ //REVIEWS 
+    const reviews = await Review.find({ book_id: bookId });
+    res.json({ book, reviews });
 
-    //TO ADD REVIEWS LATER WHEN CONNECTED
-    /*const reviews = await Review.find({ book: bookId });
-    res.json({ book, reviews });*/
-
-    res.json(book);
   } catch (error: unknown) {
     const message =
       error instanceof Error
