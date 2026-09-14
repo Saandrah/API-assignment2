@@ -88,6 +88,7 @@ app.use("/api/users", userRoutes);
 import mongoose from "mongoose";
 mongoose.connect(process.env.MONGODB_URL || "");
 
+
 // Start the express server
 const PORT = 3000;
 app.listen(PORT, () => {
