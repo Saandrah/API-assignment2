@@ -1,7 +1,3 @@
-.auth-response {
-    height: 2rem; /* Fixed height preventing layout shift */
-}
-
 .auth-input-field-container {
     display: flex;
     flex-direction: column;
@@ -12,10 +8,15 @@
 
 .auth-input-field-container label {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
 }
 
 .auth-submit-button {
-    margin-left: 10px;
+    margin: 10px;
+    width: fit-content;
+}
+
+.auth-response {
+    height: 2rem; /* Fixed height preventing layout shift */
 }
