@@ -51,3 +51,18 @@ async function fetchBooks() {
     return [];
   }
 }
+
+function showAdminWarning() {
+  const container = document.createElement("div");
+  container.classList.add("alert", "alert-danger", "text-center", "p-4");
+  container.innerHTML = `
+    <h4>You must be logged in as an admin to access this page.</h4>
+    <p>You will be redirected to the homepage shortly.</p>
+  `;
+
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5000);
+
+  return container;
+};
