@@ -67,7 +67,7 @@ function renderBooks(books) {
           <img 
             src="${book.image}" 
             alt="${book.title}" 
-            class="book-thumb book-shadow mb-2"
+            class="book-thumb book-btn-shadow mb-2"
             style="max-width: 120px;"
           />
         </div>
@@ -83,13 +83,13 @@ function renderBooks(books) {
 
         <!-- Admin buttons -->
         <div class="d-flex flex-column align-items-end" style="width: 180px;">
-          <a href="edit-book.html?id=${book._id}" class="btn btn-outline-primary w-100 mb-2">
+          <a href="edit-book.html?id=${book._id}" class="btn btn-info w-100 mb-2 book-btn-shadow">
             Edit book
           </a>
 
           <button 
             type="button" 
-            class="btn btn-outline-danger w-100"
+            class="btn btn-danger w-100 book-btn-shadow"
             onclick="showConfirmDeleteMsg('${book._id}')">
             Delete book
           </button>
