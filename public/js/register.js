@@ -4,9 +4,6 @@ let isAdminDraft = false;
 
 async function handleSubmit(event) {
     event.preventDefault();
-    console.log(usernameDraft);
-    console.log(passwordDraft);
-    console.log(isAdminDraft);
     const response = await fetch(`${API_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json"},
@@ -18,9 +15,6 @@ async function handleSubmit(event) {
         })
     });
     const data = await response.json();
-    console.log(response);
-    console.log(data);
-    console.log(response.status);
     if (response.status === 201) { // login and redirect to ladning if successful
         await fetch(`${API_URL}/auth/login`, {
             method: "POST",
@@ -34,15 +28,16 @@ async function handleSubmit(event) {
         window.location.href = "index.html";
     } else { // registration failed, notify in response span
         const registerResponse = document.getElementById("registerResponse");
-        if (registerResponse) registerResponse.textContent = data.message;
+        if (registerResponse) {
+            registerResponse.textContent = data.message;
+            registerResponse.classList.add("alert", "alert-warning");
+        };
     };
 };
 
 function initializeRegister() {
     function handleUpdateDraft(event) {
         event.preventDefault();
-        console.log(event.target.id);
-        console.log(event.target);
         switch (event.target.id) {
             case "registerUsernameInputField":
                 usernameDraft = event.target.value;
