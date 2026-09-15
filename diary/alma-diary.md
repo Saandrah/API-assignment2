@@ -39,3 +39,7 @@ In the era of artificial intelligence and LLM:s, I remain committed to disclose 
 - Document in readme how to access the admin panel through URL.
 - Add some styling to the authenticate page (login & logout).
 - Add some styling to the register page.
+
+15 september:
+- Mutual refactoring of "showAdminWarning" as a global function, through Alma's machine.
+- Give showAdminWarning a countdown.
