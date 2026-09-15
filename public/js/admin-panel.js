@@ -5,8 +5,11 @@ async function gatekeepNonAdmin() {
         return;
     } else {
         // window.location.href = "index.html";
-        const alertContainer = document.getElementById("alertContainer");
-        if (alertContainer) alertContainer.append(showAdminWarning());
+        const alertNoAdminContainer = document.getElementById("alertNoAdminContainer");
+        if (alertNoAdminContainer) alertNoAdminContainer.append(showAdminWarning());
+
+        const panelView = document.getElementById("panelView");
+        if (panelView) panelView.remove();
         return;
     };
 };

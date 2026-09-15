@@ -1,19 +1,18 @@
 // Author(s): Alma Isaksson
 // Originally written for admins only, it's been remade to allow non-admins to browse existing accounts, but gatekeeping CRUD from non admins
-let userIsAdmin = false; // local boolean so that api request don't happen a million times during loops
 
 const usersData = new Map();
 const editUsersData = new Map();
 const usersElements = new Map();
 
 async function gatekeepNonAdmin() {
-    if (await checkUserIsAdmin()) { // checkUserIsAdmin only checked once then stored locally to save API calls
-        userIsAdmin = true;
+    if (await checkUserIsAdmin()) {
+        fetchUsers();
         return;
     } else {
         // window.location.href = "index.html";
-        document.getElementById("linkToAdminPanel").remove();
-        document.getElementById("editDeleteTHead").remove();
+        const alertNoAdminContainer = document.getElementById("alertNoAdminContainer");
+        if (alertNoAdminContainer) alertNoAdminContainer.append(showAdminWarning());
         return;
     };
 };
@@ -55,12 +54,12 @@ function enterEditMode(userTargetId) {
     editButtonsContainer.classList.add("edit-mode");
     const exitCancelButton = document.createElement("button");
     exitCancelButton.textContent = "Cancel & discard changes";
-    exitCancelButton.classList.add("btn", "btn-primary");
+    exitCancelButton.classList.add("btn", "btn-info");
     exitCancelButton.addEventListener("click", () => {exitCancelEditMode(userTargetId)});
 
     const exitSaveButton = document.createElement("button");
     exitSaveButton.textContent = "Save changes";
-    exitSaveButton.classList.add("btn", "btn-primary");
+    exitSaveButton.classList.add("btn", "btn-info");
     exitSaveButton.addEventListener("click", () => {exitSaveEditMode(userTargetId)})
 
     editButtonsContainer.replaceChildren(exitCancelButton, exitSaveButton);
@@ -98,17 +97,17 @@ function exitCancelEditMode(userTargetId) {
 
     const editButton = document.createElement("button");
     editButton.textContent = `Edit ${originalUserData.username}`;
-    editButton.classList.add("btn", "btn-primary");
+    editButton.classList.add("btn", "btn-info");
     editButton.addEventListener("click", () => {enterEditMode(originalUserData._id)});
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = `Delete ${originalUserData.username}`;
     deleteButton.classList.add("btn", "btn-danger", "delete-button");
-    deleteButton.addEventListener("click", () => {handleDeleteUser(originalUserData._id, targetRow)});
+    // deleteButton.addEventListener("click", () => {handleDeleteUser(originalUserData._id, targetRow)});
+    deleteButton.addEventListener("click", () => {openConfirmDelete(originalUserData._id, targetRow)});
 
     editButtonsContainer.append(editButton, deleteButton);
-    targetRow.replaceChildren(usernameData, passwordData, isAdminData, registrationDateData);
-    if (userIsAdmin) targetRow.append(editButtonsContainer);
+    targetRow.replaceChildren(usernameData, passwordData, isAdminData, registrationDateData, editButtonsContainer);
 
     editUsersData.delete(userTargetId);
 };
@@ -151,6 +150,37 @@ async function exitSaveEditMode(userTargetId) {
     exitCancelEditMode(userTargetId);
 };
 
+async function openConfirmDelete(userTargetId, targetRow) {
+    const currentUserData = usersData.get(userTargetId);
+    const alreadyExpanded = currentUserData.confirmDeleteExpanded;
+    if (alreadyExpanded) return; // prevent appending more than once
+    usersData.set(userTargetId, {...currentUserData, confirmDeleteExpanded: true});
+
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("alert", "alert-danger", "mt-2", "d-done");
+    wrapper.id = `confirm-${userTargetId}`;
+
+    const questionText = document.createElement("p");
+    questionText.textContent = "Are you sure you want to delete this user?";
+
+    const confirmButton = document.createElement("button");
+    confirmButton.textContent = "Yes";
+    confirmButton.classList.add("btn", "btn-danger", "btn-sm", "me-2");
+    confirmButton.addEventListener("click", () => {handleDeleteUser(userTargetId, targetRow)});
+
+    const cancelButton = document.createElement("button");
+    cancelButton.textContent = "Cancel";
+    cancelButton.classList.add("btn", "btn-secondary", "btn-sm");
+    cancelButton.addEventListener("click", () => {
+        wrapper.remove();
+        usersData.set(userTargetId, {...currentUserData, confirmDeleteExpanded: false});
+        return;
+    });
+
+    wrapper.append(questionText, confirmButton, cancelButton);
+    targetRow.append(wrapper);
+};
+
 async function handleDeleteUser(userTargetId, elementToDelete) {
     const response = await fetch(`${API_URL}/users/${userTargetId}`, {
         method: "DELETE",
@@ -177,7 +207,7 @@ async function fetchUsers() {
     const data = await response.json();
     for (i in data.result) {
         const user = data.result[i];
-        usersData.set(user._id, {...user, password: null});
+        usersData.set(user._id, {...user, password: null, confirmDeleteExpanded: false});
 
         const newUserRow = document.createElement("tr");
         newUserRow.dataset.userId = user._id;
@@ -213,18 +243,18 @@ async function fetchUsers() {
 
         const editButton = document.createElement("button");
         editButton.textContent = `Edit ${user.username}`;
-        editButton.classList.add("btn", "btn-primary");
+        editButton.classList.add("btn", "btn-info");
         editButton.addEventListener("click", () => {enterEditMode(user._id)});
         editButtonsContainer.append(editButton);
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = `Delete ${user.username}`;
         deleteButton.classList.add("btn", "btn-danger", "delete-button");
-        deleteButton.addEventListener("click", () => {handleDeleteUser(user._id, newUserRow)});
+        // deleteButton.addEventListener("click", () => {handleDeleteUser(user._id, newUserRow)});
+        deleteButton.addEventListener("click", () => {openConfirmDelete(user._id, newUserRow)});
         editButtonsContainer.append(deleteButton);
 
-        newUserRow.append(usernameData, passwordData, isAdminData, registrationDateData);
-        if (userIsAdmin) newUserRow.append(editButtonsContainer);
+        newUserRow.append(usernameData, passwordData, isAdminData, registrationDateData, editButtonsContainer);
         if (usersListTable) usersListTable.append(newUserRow);
         usersElements.set(user._id, newUserRow);
     };
@@ -247,4 +277,3 @@ function handleNotify(message, positive = false) {
 };
 
 gatekeepNonAdmin();
-fetchUsers();

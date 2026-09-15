@@ -43,3 +43,7 @@ In the era of artificial intelligence and LLM:s, I remain committed to disclose 
 15 september:
 - Mutual refactoring of "showAdminWarning" as a global function, through Alma's machine.
 - Give showAdminWarning a countdown.
+- Restyle authentication & registration page to be more consistent with our mutual design philosophy.
+- Restyle admin panel & admin manage users page to be more consistent with our mutual design philosophy.
+- Revert admin manage users page to only allow admins to access, redirecting non-admins back to landing page. The previous mentioned bugs is no longer any concern.
+- Added confirm delete user in admin manage users page, to be more consistent with our mutual design philosophy and to introduce better UX.
