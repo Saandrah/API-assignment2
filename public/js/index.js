@@ -37,7 +37,7 @@ function renderBooks(books) {
           alt="${book.title}" 
           class="book-thumb book-btn-shadow mb-2"
         />
-        <a href="book.html?id=${book._id}" class="btn btn-info mt-2 book-btn-shadow">
+        <a href="bookpage.html?id=${book._id}" class="btn btn-info mt-2 book-btn-shadow">
             Show Book
           </a>
         </div>
