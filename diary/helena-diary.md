@@ -97,6 +97,20 @@ Weekly plan:
 
 ### Helena 
 
+- Set up of admin-books page - added create button, edit button and delete button on page and rendering of books
+- moved fetchBooks till Globals to re-use in both index & admin-books
+- added authentication - if not logged in as admin you get an error message (books don't show) and you get re-directed to main index page after a few seconds
+- added functionality to delete button, with a confirmation box to say yes or cancel to confirm the delete, confirmation message and then book gets removed
+
+
+## 15 sept 
+
+### GROUP MEETING
+
+
+### Helena 
+- did some basic styling with bootstrap and shadow to keep all buttons cohesive
+
 
 
 
