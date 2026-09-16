@@ -118,7 +118,7 @@ Weekly plan:
 - EDIT books - (redirect to edit one book and hiding books) added a table, back button, save button and success message upon save. 
 - CREATE books - (redirect to create book) added a form and buttons. 
 
-## 15 sept 
+## 16 sept 
 
 ### Helena 
 - created the functions to the save button with error and success messages and validations, and formatting (ex. capital letters) 
