@@ -9,7 +9,7 @@ async function fetchBook() {
     const data = await response.json();
 
   renderBook(data.book);
-console.log("Reviews:", data.reviews);
+  renderReviews(data.reviews);
 
   } catch (error) {
     console.error("Error fetching book:", error);
@@ -37,4 +37,81 @@ function renderBook(book) {
     <a href="index.html" class="btn btn-info mt-3">Back to books</a>
   `;
 }
+
+function renderReviews(reviews) {
+  const bookContainer = document.getElementById("book-container");
+
+  bookContainer.innerHTML += `
+    <h2 class="mt-5">Reviews</h2>
+
+    ${
+      reviews.length === 0
+        ? "<p>No reviews yet.</p>"
+        : reviews
+            .map(
+              (review) => `
+                <div class="border rounded p-3 mb-3">
+                  <h4>${review.name}</h4>
+                  <p>${review.content}</p>
+                  <p><strong>Rating:</strong> ${review.rating}/5</p>
+                  <p><small>${new Date(review.created_at).toLocaleDateString()}</small></p>
+                </div>
+              `,
+            )
+            .join("")
+    }
+  `;
+
+
+bookContainer.innerHTML += `
+    <h2 class="mt-5">Write a review</h2>
+
+    <form id="review-form">
+      <div class="mb-3">
+        <label for="review-name" class="form-label">Name</label>
+        <input
+          type="text"
+          id="review-name"
+          class="form-control"
+          required
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="review-content" class="form-label">Review</label>
+        <textarea
+          id="review-content"
+          class="form-control"
+          required
+        ></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="review-rating" class="form-label">Rating (1-5)</label>
+        <input
+          type="number"
+          id="review-rating"
+          class="form-control"
+          min="1"
+          max="5"
+          required
+        >
+      </div>
+
+      <button type="submit" class="btn btn-info">
+        Submit review
+      </button>
+    </form>
+  `;
+    const reviewForm = document.getElementById("review-form");
+    console.log("FORM:", reviewForm);
+    reviewForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    console.log("review-form submitted");
+    });
+}
+
+
+
 
