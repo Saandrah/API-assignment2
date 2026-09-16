@@ -69,23 +69,25 @@ function renderBooks(books) {
       (book) => `
       <div class="d-flex gap-4 mb-4 p-3 border rounded align-items-start admin-book-card">
 
-        <!-- Book Thumbnail -->
-        <div class="d-flex flex-column">
-          <img 
-            src="${book.image}" 
-            alt="${book.title}" 
-            class="book-thumb book-btn-shadow mb-2"
-            style="max-width: 120px;"
-          />
-        </div>
+        <div class="d-flex gap-4 admin-book-content">
+          <!-- Book Thumbnail -->
+          <div class="d-flex flex-column">
+            <img 
+              src="${book.image}" 
+              alt="${book.title}" 
+              class="book-thumb book-btn-shadow mb-2"
+              style="max-width: 120px;"
+            />
+          </div>
 
-        <!-- Text -->
-        <div style="max-width: 600px;">
-          <h3 class="mb-2"><strong>${book.title}</strong></h3>
-          <p class="mb-1"><strong>Author:</strong> ${book.author}</p>
-          <p class="mb-1"><strong>Description:</strong> ${book.description}</p>
-          <p class="mb-1"><strong>Genres:</strong> ${Array.isArray(book.genres) ? book.genres.join(", ") : book.genres}</p>
-          <p class="mb-1"><strong>Published Year:</strong> ${book.published_year}</p>
+          <!-- Text -->
+          <div style="max-width: 600px;">
+            <h3 class="mb-2"><strong>${book.title}</strong></h3>
+            <p class="mb-1"><strong>Author:</strong> ${book.author}</p>
+            <p class="mb-1"><strong>Description:</strong> ${book.description}</p>
+            <p class="mb-1"><strong>Genres:</strong> ${Array.isArray(book.genres) ? book.genres.join(", ") : book.genres}</p>
+            <p class="mb-1"><strong>Published Year:</strong> ${book.published_year}</p>
+          </div>
         </div>
 
         <!-- Admin buttons -->

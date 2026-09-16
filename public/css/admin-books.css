@@ -1,15 +1,24 @@
+/***********************************
+/   ADMIN BOOK LAYOUT (DESKTOP) 
+/***********************************/
+
+.admin-book-card {
+  display: flex;
+  align-items: flex-start;
+}
+
+.admin-book-content {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+}
+
 .admin-buttons {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: space-between;
   gap: 20px;
-}
-
-.admin-book-card {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
+  margin-left: auto;
 }
 
 #admin-book-container {
@@ -19,63 +28,32 @@
 }
 
 /***********************************
- // MEDIA QUERY: MAX-WIDTH 996px
+ // MEDIA QUERY: MAX-WIDTH 992px
 /***********************************
- // - Keep image and text side-by-side
- // - Move admin buttons below the text
- // - Buttons align left
+ // - Move admin buttons below the book content
+ // - Align buttons to the left
  ***********************************/
 @media (max-width: 992px) {
-
-    .admin-book-card {
-    flex-direction: row; 
-    flex-wrap: wrap;   
-  }
-
-  .admin-book-card > div:nth-child(2) {
-    max-width: 300px;
+  .admin-book-card {
+    flex-direction: column !important; 
   }
 
   .admin-buttons {
     align-items: flex-start;
-    justify-content: flex-start;
     gap: 12px;
     margin-top: 12px;
-    width: auto;
+    margin-left: 0;
   }
 }
-
 
 /***********************************
 // MEDIA QUERY: MAX-WIDTH 768px
 /***********************************
-// - Stacks the admin book card vertically on small screens
-// - Image on top - first child of the card
-// - Text below the image - second child of the card (nth-child(2))
-// - Admin buttons at the bottom
+// - Stack image and text vertically on small screens
 //---------------------------------*/
-
 @media (max-width: 768px) {
-
-  .admin-book-card {
+  .admin-book-content {
     flex-direction: column;
-  }
-
-  .admin-book-card > div:first-child {
-    width: 100%;
-  }
-
-  .admin-book-card > div:nth-child(2) {
-    width: 100%;
-    max-width: none;
-  }
-
-  .admin-buttons {
-    margin-left: 0;
-    justify-content: flex-start;
-    align-items: flex-start;
     gap: 12px;
-    margin-top: 12px;
   }
 }
-
