@@ -152,7 +152,7 @@ document.addEventListener("click", (event) => {
 function renderCreateForm() {
   document.getElementById("back-to-admin-panel").style.display = "none";
   booksContainer.innerHTML = `
-    <div class="w-50" style="max-width: 600px;">
+    <div id="create-book-container" class="p-4 border rounded">
       <h3 class="mt-4">Create New Book</h3>
 
       <form id="create-book-form" class="mt-3">

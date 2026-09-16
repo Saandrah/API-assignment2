@@ -49,6 +49,17 @@
   gap: 8px;
 }
 
+/***********************************
+/   CREATE BOOK LAYOUT (DESKTOP) 
+/***********************************/
+
+#create-book-container {
+  max-width: 600px;
+  margin-left: 0;
+  margin-right: auto;
+  padding: 16px;
+}
+
 
 
 /***********************************
@@ -81,6 +92,12 @@
   .admin-buttons {
   flex-direction: column;
 }
+
+  #create-book-container {
+    max-width: 100%;
+    padding: 12px;
+  }
+
 }
 
 
