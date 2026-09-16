@@ -358,7 +358,7 @@ function renderEditTable(oneBook) {
   document.getElementById("back-to-admin-panel").style.display = "none";
   booksContainer.innerHTML = `
 
-  <div class= "w-50" style="max-width: 600px;" >
+  <div id="edit-book-container" class="p-4 border rounded">
 
   <h3 class="mt-4">Edit Book</h3>
   

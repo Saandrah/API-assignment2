@@ -49,18 +49,17 @@
   gap: 8px;
 }
 
-/***********************************
-/   CREATE BOOK LAYOUT (DESKTOP) 
-/***********************************/
+/***************************************
+/   CREATE & EDIT BOOK LAYOUT (DESKTOP) 
+/***************************************/
 
-#create-book-container {
+#create-book-container,
+#edit-book-container {
   max-width: 600px;
   margin-left: 0;
   margin-right: auto;
-  padding: 16px;
+  padding: 8px;
 }
-
-
 
 /***********************************
  // MEDIA QUERY: MAX-WIDTH 992px
@@ -93,11 +92,11 @@
   flex-direction: column;
 }
 
-  #create-book-container {
+   #create-book-container,
+  #edit-book-container {
     max-width: 100%;
-    padding: 12px;
   }
-
 }
+
 
 
