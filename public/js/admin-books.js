@@ -122,6 +122,68 @@ function backToAdmin() {
 }
 
 //---------------------------
+// CREATE BOOK FUNCTION
+//---------------------------
+// Onlick of the create book button inside the bookcontiainer, hide the button and all books listed and show a form to creat a new book.
+// All fields must be filled out to create a new book. If not, an error message will be shown.
+// On successful creation, a success message will be shown and the user will be redirected back to the admin page after 3 seconds.
+
+document.addEventListener("click", (event) => {
+  if (event.target.id === "create-book-btn") {
+    renderCreateForm();
+  }
+});
+
+function renderCreateForm() {
+  booksContainer.innerHTML = `
+    <div class="w-50" style="max-width: 600px;">
+      <h3 class="mt-4">Create New Book</h3>
+
+      <form id="create-book-form" class="mt-3">
+
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input id="create-title" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Author</label>
+          <input id="create-author" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea id="create-description" class="form-control" required></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Genres</label>
+          <input id="create-genres" class="form-control" placeholder="fantasy, drama" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Published Year</label>
+          <input id="create-year" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Image URL</label>
+          <input id="create-image" class="form-control" required>
+        </div>
+
+      </form>
+
+      <div class="d-flex gap-3 mt-3 justify-content-between align-items-center">
+        <button class="btn btn-outline-dark rounded-3 px-3 book-btn-shadow" onclick="backToAdmin()">← Back</button>
+        <button class="btn btn-success book-btn-shadow" onclick="createBook()">Save Book</button>
+      </div>
+
+      <div id="create-message" class="mt-3"></div>
+    </div>
+  `;
+}
+
+//---------------------------
 // EDIT BOOK FUNCTIONS
 //---------------------------
 //Clear book container
@@ -189,8 +251,8 @@ function renderEditTable(oneBook) {
     </table>
 
      <div class="d-flex gap-3 mt-3 justify-content-between align-items-center">
-        <button class="btn btn-outline-dark rounded-3 px-3" onclick="backToAdmin()">← Back</button>
-        <button class="btn btn-primary" onclick="updateBook('${oneBook._id}')">Save changes</button>
+        <button class="btn btn-outline-dark rounded-3 px-3 book-btn-shadow" onclick="backToAdmin()">← Back</button>
+        <button class="btn btn-primary book-btn-shadow" onclick="updateBook('${oneBook._id}')">Save changes</button>
     </div>
 
     <div id="update-${oneBook._id}" class="mt-3"></div>
