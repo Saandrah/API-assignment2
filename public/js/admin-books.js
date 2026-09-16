@@ -143,32 +143,32 @@ function renderCreateForm() {
 
         <div class="mb-3">
           <label class="form-label">Title</label>
-          <input id="create-title" class="form-control" required>
+          <input id="create-title" class="form-control" required placeholder="Insert Book Title">
         </div>
 
         <div class="mb-3">
           <label class="form-label">Author</label>
-          <input id="create-author" class="form-control" required>
+          <input id="create-author" class="form-control" required placeholder="Insert Author">
         </div>
 
         <div class="mb-3">
           <label class="form-label">Description</label>
-          <textarea id="create-description" class="form-control" required></textarea>
+          <textarea id="create-description" class="form-control" required placeholder="Insert Description for this book"></textarea>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Genres</label>
-          <input id="create-genres" class="form-control" placeholder="fantasy, drama" required>
+          <input id="create-genres" class="form-control" placeholder="Insert Genres, e.g. fantasy, drama" required>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Published Year</label>
-          <input id="create-year" class="form-control" required>
+          <input id="create-year" class="form-control" required placeholder="Insert Published Year, e.g. 2026">
         </div>
 
         <div class="mb-3">
           <label class="form-label">Image URL</label>
-          <input id="create-image" class="form-control" required>
+          <input id="create-image" class="form-control" required placeholder="Insert Image URL for this book">
         </div>
 
       </form>
