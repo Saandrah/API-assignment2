@@ -2,6 +2,10 @@
 /   ADMIN BOOK LAYOUT (DESKTOP) 
 /***********************************/
 
+#back-to-admin-panel {
+  margin-top: 20px;
+}
+
 .admin-book-card {
   display: flex;
   align-items: flex-start;
@@ -21,11 +25,31 @@
   margin-left: auto;
 }
 
+
 #admin-book-container {
   max-width: 900px;
   margin-left: 0;
   margin-right: auto;
 }
+
+.admin-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+  margin-left: auto;
+  max-width: 120px;
+}
+
+.admin-buttons .alert {
+  width: 100%;
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
 
 /***********************************
  // MEDIA QUERY: MAX-WIDTH 992px
@@ -38,14 +62,11 @@
     flex-direction: column !important; 
   }
 
-  .admin-buttons {
+.admin-buttons {
     align-items: flex-start;
-    gap: 12px;
-    margin-top: 12px;
     margin-left: 0;
   }
 }
-
 /***********************************
 // MEDIA QUERY: MAX-WIDTH 768px
 /***********************************
@@ -56,4 +77,10 @@
     flex-direction: column;
     gap: 12px;
   }
+
+  .admin-buttons {
+  flex-direction: column;
 }
+}
+
+

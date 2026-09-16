@@ -44,6 +44,7 @@ function renderAdminWarning() {
 // -------------------------------------------------------------------------------
 
 async function loadBooks() {
+  document.getElementById("back-to-admin-panel").style.display = "block";
   const books = await fetchBooks();
 
   if (books.length === 0) {
@@ -117,12 +118,16 @@ function renderBooks(books) {
 }
 
 //---------------------------
-//BACK BUTTON FUNCTION
+//BACK BUTTONS
 //---------------------------
 
 function backToAdmin() {
   loadBooks();
 }
+
+document.getElementById("back-to-admin-panel").addEventListener("click", () => {
+  window.location.href = "admin-panel.html"; // eller index.html beroende på din struktur
+});
 
 //---------------------------
 // CREATE BOOK FUNCTION - BUTTON CLICK EVENT LISTENER
@@ -145,6 +150,7 @@ document.addEventListener("click", (event) => {
 //---------------------------
 
 function renderCreateForm() {
+  document.getElementById("back-to-admin-panel").style.display = "none";
   booksContainer.innerHTML = `
     <div class="w-50" style="max-width: 600px;">
       <h3 class="mt-4">Create New Book</h3>
@@ -349,6 +355,7 @@ async function fetchOneBook(bookId) {
 //---------------------------
 
 function renderEditTable(oneBook) {
+  document.getElementById("back-to-admin-panel").style.display = "none";
   booksContainer.innerHTML = `
 
   <div class= "w-50" style="max-width: 600px;" >
