@@ -69,14 +69,12 @@ async function updateAuthForm() {
         if (authLegend) authLegend.textContent = "Logout";
         if (authSubmitButton) {
             authSubmitButton.value = "Logout";
-            authSubmitButton.classList.add("btn", "btn-primary");
         };
         authForm.addEventListener("click", handleLogout);
     } else { // create login form for unauthenticated users
         if (authLegend) authLegend.textContent = "Login";
         if (authSubmitButton) {
             authSubmitButton.value = "Login";
-            authSubmitButton.classList.add("btn", "btn-primary");
         };
 
         const usernameInputLabel = document.createElement("label");

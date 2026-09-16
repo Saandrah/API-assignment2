@@ -21,7 +21,8 @@
   border-radius: 4px;
 }
 
-.book-btn-shadow {
+.book-btn-shadow,
+.btn-shadow {
   box-shadow: 0 3px 8px rgba(0,0,0,0.75);
 }
 
