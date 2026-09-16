@@ -23,12 +23,17 @@
 
 .book-btn-shadow,
 .btn-shadow {
-  box-shadow: 0 3px 8px rgba(0,0,0,0.75);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.75);
 }
 
 .nowrap-text {
   white-space: nowrap;
 }
-
-
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Yusei Magic", sans-serif;
+}
