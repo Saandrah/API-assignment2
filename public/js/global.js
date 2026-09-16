@@ -34,7 +34,13 @@ async function updateNavbar() {
     document.getElementById("linkToRegister").remove();
   } else {
     document.getElementById("linkToAuth").textContent = "Login";
-  }
+  };
+  if (await checkUserIsAdmin()) {
+    const adminPanelLink = document.createElement("a");
+    adminPanelLink.textContent = "Admin panel";
+    adminPanelLink.href = "admin-panel.html";
+    document.querySelector("nav").append(adminPanelLink);
+  };
 }
 
 function initializeApp() {

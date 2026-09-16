@@ -18,5 +18,9 @@
 }
 
 .auth-response {
-    height: 2rem; /* Fixed height preventing layout shift */
+    height: 4rem; /* Fixed height preventing layout shift */
+}
+
+legend {
+    font-family: "Yusei Magic", sans-serif;
 }
