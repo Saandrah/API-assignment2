@@ -1,3 +1,4 @@
+// Author(s): Alma, Helena
 // Variables and functions that will be used across all pages
 
 const API_URL = "/api";
@@ -53,16 +54,33 @@ async function fetchBooks() {
 }
 
 function showAdminWarning() {
+  let timer = 3;
+
   const container = document.createElement("div");
   container.classList.add("alert", "alert-danger", "text-center", "p-4");
-  container.innerHTML = `
-    <h4>You must be logged in as an admin to access this page.</h4>
-    <p>You will be redirected to the homepage shortly.</p>
-  `;
+
+  const adminWarningText = document.createElement("p");
+  adminWarningText.classList.add("fs-4");
+  adminWarningText.textContent = "You must be logged in as an admin to access this page.";
+
+  const redirectText = document.createElement("p");
+  redirectText.textContent = "Redirecting to the homepage in ";
+
+  const timerSpan = document.createElement("span");
+  timerSpan.textContent = timer;
+
+  redirectText.append(timerSpan);
+  container.append(adminWarningText, redirectText);
 
   setTimeout(() => {
     window.location.href = "index.html";
-  }, 6000);
+  }, timer * 1000);
+
+  setInterval(() => {
+    timer -= 1;
+    timerSpan.textContent = timer;
+    if (timer < 0) window.location.reload(); // Preventing a bug when navigating back through history
+  }, 1000);
 
   return container;
-}
+};

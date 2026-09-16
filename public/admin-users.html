@@ -20,15 +20,17 @@
 			</nav>
 		</header>
 		<main>
-			<a id="linkToAdminPanel" href="admin-panel.html">Back to panel</a>
+			<div id="alertNoAdminContainer"></div>
+			<a id="linkToAdminPanel" href="admin-panel.html" class="btn btn-secondary btn-shadow">Back to panel</a>
 			<div id="notificationContainer" class="notification-container"></div>
-			<table>
+			<table class="w-100">
 				<thead>
-					<tr>
-						<td>Username</td>
-						<td>Password</td>
-						<td>Is admin</td>
-						<td id="editDeleteTHead">Edit / delete</td>
+					<tr class="w-100">
+						<td class="fw-bold username">Username</td>
+						<td class="fw-bold password">Password</td>
+						<td class="fw-bold">Is admin</td>
+						<td class="fw-bold">Registrataion date</td>
+						<td class="fw-bold edit-delete-wrapper" id="editDeleteTHead">Edit / delete</td>
 					</tr>
 				</thead>
 				<tbody id="usersListTable">

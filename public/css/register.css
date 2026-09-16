@@ -1,0 +1,22 @@
+.register-input-field-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+    width: 500px;
+}
+
+.register-input-field-container label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.register-submit-button {
+    margin: 10px;
+    width: fit-content;
+}
+
+.register-response {
+    height: 2rem; /* Fixed height preventing layout shift */
+}

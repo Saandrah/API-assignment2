@@ -14,14 +14,13 @@ async function handleLogin() {
         })
     });
     const data = await response.json();
-    console.log(response);
-    console.log(data);
-    console.log(response.status);
-    if (response.status === 200) {
+    if (response.status === 200) { // 200 = authentication ok
         window.location.href = "index.html";
         return;
-    } else {
-        document.getElementById("AuthResponse").textContent = data.message;
+    } else { // authentication not ok
+        const authResponse = document.getElementById("AuthResponse");
+        authResponse.textContent = data.message;
+        authResponse.classList.add("alert", "alert-warning");
     };
 };
 
@@ -53,8 +52,6 @@ async function updateAuthForm() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        console.log(usernameDraft);
-        console.log(passwordDraft);
         handleLogin();
     };
 
@@ -70,11 +67,15 @@ async function updateAuthForm() {
 
     if (await checkUserIsAuthenticated()) { // create logout form for authenticated users
         if (authLegend) authLegend.textContent = "Logout";
-        if (authSubmitButton) authSubmitButton.value = "Logout";
+        if (authSubmitButton) {
+            authSubmitButton.value = "Logout";
+        };
         authForm.addEventListener("click", handleLogout);
     } else { // create login form for unauthenticated users
         if (authLegend) authLegend.textContent = "Login";
-        if (authSubmitButton) authSubmitButton.value = "Login";
+        if (authSubmitButton) {
+            authSubmitButton.value = "Login";
+        };
 
         const usernameInputLabel = document.createElement("label");
 
