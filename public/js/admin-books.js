@@ -67,7 +67,7 @@ function renderBooks(books) {
   booksContainer.innerHTML += books
     .map(
       (book) => `
-      <div class="d-flex gap-4 mb-4 p-3 border rounded align-items-start">
+      <div class="d-flex gap-4 mb-4 p-3 border rounded align-items-start admin-book-card">
 
         <!-- Book Thumbnail -->
         <div class="d-flex flex-column">
@@ -89,7 +89,8 @@ function renderBooks(books) {
         </div>
 
         <!-- Admin buttons -->
-        <div class="d-flex flex-column align-items-end" style="width: 180px;">
+
+        <div class=" admin-buttons">
 
           <button class="btn btn-info w-100 mb-2 book-btn-shadow" onclick="startEditBook('${book._id}')">Edit book</button>
 
@@ -182,7 +183,7 @@ function renderCreateForm() {
 
       <div class="d-flex gap-3 mt-3 justify-content-between align-items-center">
         <button class="btn btn-outline-dark rounded-3 px-3 book-btn-shadow" onclick="backToAdmin()">← Back</button>
-        <button id="create-book-save-btn" class="btn btn-success book-btn-shadow">Save Book</button>
+        <button id="create-book-save-btn" class="btn btn-primary book-btn-shadow">Save Book</button>
       </div>
 
       <div id="create-message" class="mt-3"></div>

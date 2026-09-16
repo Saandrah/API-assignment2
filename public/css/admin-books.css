@@ -1,0 +1,81 @@
+.admin-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.admin-book-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+#admin-book-container {
+  max-width: 900px;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/***********************************
+ // MEDIA QUERY: MAX-WIDTH 996px
+/***********************************
+ // - Keep image and text side-by-side
+ // - Move admin buttons below the text
+ // - Buttons align left
+ ***********************************/
+@media (max-width: 992px) {
+
+    .admin-book-card {
+    flex-direction: row; 
+    flex-wrap: wrap;   
+  }
+
+  .admin-book-card > div:nth-child(2) {
+    max-width: 300px;
+  }
+
+  .admin-buttons {
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 12px;
+    width: auto;
+  }
+}
+
+
+/***********************************
+// MEDIA QUERY: MAX-WIDTH 768px
+/***********************************
+// - Stacks the admin book card vertically on small screens
+// - Image on top - first child of the card
+// - Text below the image - second child of the card (nth-child(2))
+// - Admin buttons at the bottom
+//---------------------------------*/
+
+@media (max-width: 768px) {
+
+  .admin-book-card {
+    flex-direction: column;
+  }
+
+  .admin-book-card > div:first-child {
+    width: 100%;
+  }
+
+  .admin-book-card > div:nth-child(2) {
+    width: 100%;
+    max-width: none;
+  }
+
+  .admin-buttons {
+    margin-left: 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 12px;
+  }
+}
+

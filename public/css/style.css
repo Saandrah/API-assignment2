@@ -37,3 +37,9 @@ h5,
 h6 {
   font-family: "Yusei Magic", sans-serif;
 }
+
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
