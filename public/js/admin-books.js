@@ -122,17 +122,24 @@ function backToAdmin() {
 }
 
 //---------------------------
-// CREATE BOOK FUNCTION
+// CREATE BOOK FUNCTION - BUTTON CLICK EVENT LISTENER
 //---------------------------
-// Onlick of the create book button inside the bookcontiainer, hide the button and all books listed and show a form to creat a new book.
-// All fields must be filled out to create a new book. If not, an error message will be shown.
-// On successful creation, a success message will be shown and the user will be redirected back to the admin page after 3 seconds.
 
 document.addEventListener("click", (event) => {
   if (event.target.id === "create-book-btn") {
     renderCreateForm();
   }
 });
+
+document.addEventListener("click", (event) => {
+  if (event.target.id === "create-book-save-btn") {
+    createBook();
+  }
+});
+
+//---------------------------
+// SHOW THE CREATE FORM
+//---------------------------
 
 function renderCreateForm() {
   booksContainer.innerHTML = `
@@ -175,10 +182,137 @@ function renderCreateForm() {
 
       <div class="d-flex gap-3 mt-3 justify-content-between align-items-center">
         <button class="btn btn-outline-dark rounded-3 px-3 book-btn-shadow" onclick="backToAdmin()">← Back</button>
-        <button class="btn btn-success book-btn-shadow" onclick="createBook()">Save Book</button>
+        <button id="create-book-save-btn" class="btn btn-success book-btn-shadow">Save Book</button>
       </div>
 
       <div id="create-message" class="mt-3"></div>
+    </div>
+  `;
+}
+
+//------------------------------------------------------
+// CREATE - VALIDATION OF INPUT FIELDS & ERROR MESSAGE
+//------------------------------------------------------
+// This validation ensures:
+// 1. All fields are filled out.
+// 2. Input is trimmed to remove leading/trailing whitespace.
+// 3. Title and Description start with a capitalized first word.
+// 4. Author and Genres capitalize every word.
+// 5. Genres are converted into a clean array.
+// 6. Published year is converted into a number.
+// 7. Clean, normalized data is returned for API submission.
+
+function capitalizeFirstWord(text) {
+  if (!text) return "";
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+function capitalizeWords(text) {
+  if (!text) return "";
+  return text
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+function validateCreateForm() {
+  // INPUT VALUES (trimmed)
+  const inputTitle = document.getElementById("create-title").value.trim();
+  const inputAuthor = document.getElementById("create-author").value.trim();
+  const inputDescription = document
+    .getElementById("create-description")
+    .value.trim();
+  const inputGenres = document.getElementById("create-genres").value.trim();
+  const inputYear = document.getElementById("create-year").value.trim();
+  const inputImage = document.getElementById("create-image").value.trim();
+
+  // REQUIRED FIELDS CHECK
+  if (
+    !inputTitle ||
+    !inputAuthor ||
+    !inputDescription ||
+    !inputGenres ||
+    !inputYear ||
+    !inputImage
+  ) {
+    showCreateMessage("All fields must be filled out.", "danger");
+    return null;
+  }
+
+  // CAPITALIZATION RULES
+  const title = capitalizeFirstWord(inputTitle);
+  const description = capitalizeFirstWord(inputDescription);
+  const author = capitalizeWords(inputAuthor);
+
+  const genres = inputGenres
+    .split(",")
+    .map((g) => capitalizeWords(g.trim()))
+    .filter(Boolean);
+
+  // YEAR VALIDATION
+  const published_year = Number(inputYear);
+  if (isNaN(published_year)) {
+    showCreateMessage("Published year must be a valid number.", "danger");
+    return null;
+  }
+
+  // FINAL CLEAN OBJECT
+  return {
+    title,
+    author,
+    description,
+    genres,
+    published_year,
+    image: inputImage,
+  };
+}
+
+//---------------------------
+// CREATE BOOK FUNCTION - API CALL
+//---------------------------
+
+async function createBook() {
+  const newBook = validateCreateForm();
+  if (!newBook) return; // validation already showed error message
+
+  try {
+    const response = await fetch(`${API_URL}/books`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(newBook),
+    });
+
+    if (!response.ok) {
+      showCreateMessage("Failed to create book.", "danger");
+      return;
+    }
+
+    showCreateMessage("Book created successfully!", "success");
+
+    // Redirect after 3 seconds
+    setTimeout(() => {
+      loadBooks();
+    }, 3000);
+  } catch (error) {
+    console.error("Error creating book:", error);
+    showCreateMessage("Unexpected error while creating book.", "danger");
+  }
+}
+
+//----------------------------------------------------------------
+// CREATE BOOK MESSAGE FUNCTION - SHOW SUCCESS OR ERROR MESSAGE
+//----------------------------------------------------------------
+
+function showCreateMessage(message, type = "success") {
+  const messageBox = document.getElementById("create-message");
+  if (!messageBox) return;
+
+  messageBox.innerHTML = `
+    <div class="alert alert-${type}">
+      ${message}
     </div>
   `;
 }
