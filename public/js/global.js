@@ -54,7 +54,7 @@ async function fetchBooks() {
 }
 
 function showAdminWarning() {
-  let timer = 3;
+  let timer = 6;
 
   const container = document.createElement("div");
   container.classList.add("alert", "alert-danger", "text-center", "p-4");
