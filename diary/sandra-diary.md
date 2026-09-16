@@ -5,3 +5,9 @@ Today I started working on my part of the project, which is the Reviews section.
 Friday 11/9-2026
 
 Today I continued working on my part of the project, which is the Reviews section. I tested the Review API using Insomnia and confirmed that reviews can be created and saved to MongoDB. I also tested the GET endpoints and started testing the protected PATCH and DELETE endpoints. I found that these endpoints require authentication, since they are protected with a token.
+
+Monday 14/9-2026
+
+Today I continued working on my part of the project, Reviews. I completed the connection between books and reviews in the backend and tested that the correct reviews are retrieved for a specific book.
+
+Tuesday 15/9-2026
