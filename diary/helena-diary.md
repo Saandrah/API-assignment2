@@ -107,10 +107,27 @@ Weekly plan:
 
 ### GROUP MEETING
 
+- Merge and planning
+- moved the function showAdminWarning() I created to globals to be used as msg for all admin pages
 
 ### Helena 
+- redid my code to re-implement showAdminWarning() after we moved it from my file to globals
 - did some basic styling with bootstrap and shadow to keep all buttons cohesive
+- made a re-usable function for backbutton (to be used in edit and create) to go back to admin book start view
+- changed timer to 6 seconds to read msg
+- EDIT books - (redirect to edit one book and hiding books) added a table, back button, save button and success message upon save. 
+- CREATE books - (redirect to create book) added a form and buttons. 
 
+## 15 sept 
+
+### Helena 
+- created the functions to the save button with error and success messages and validations, and formatting (ex. capital letters) 
+
+### GROUP MEETING
+
+- Showed progress and merged code
+- Suggest to use the shadow I created in styles.css to be used on all books and buttons for cohesive apperance
+- Found a new font in google fonts to be used in H1-H6 for a more modern look
 
 
 
