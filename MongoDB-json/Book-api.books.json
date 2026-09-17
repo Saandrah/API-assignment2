@@ -1,0 +1,169 @@
+[{
+  "_id": {
+    "$oid": "6aa1201f96ee76674f6dc534"
+  },
+  "title": "The Hobbit",
+  "description": "The journey through Middle-earth begins here with J.R.R. Tolkien's classic prelude to his epic fantasy Lord of the Rings trilogy.",
+  "author": "J.R.R. Tolkien",
+  "genres": [
+    "Fantasy",
+    "Adventure"
+  ],
+  "image": "https://m.media-amazon.com/images/I/712cDO7d73L._SY522_.jpg",
+  "published_year": 1937
+},
+{
+  "_id": {
+    "$oid": "6aa1201f96ee76674f6dc535"
+  },
+  "title": "Harry Potter and the Philosopher's Stone",
+  "description": "The first book in the Harry Potter series, following Harry as he discovers he is a wizard.",
+  "author": "J.K. Rowling",
+  "genres": [
+    "Fantasy",
+    "Adventure"
+  ],
+  "image": "https://m.media-amazon.com/images/I/91MvjM66W+L._SY522_.jpg",
+  "published_year": 1997
+},
+{
+  "_id": {
+    "$oid": "6aa1201f96ee76674f6dc536"
+  },
+  "title": "Verity",
+  "description": "A psychological thriller about a struggling writer who uncovers disturbing secrets.",
+  "author": "Colleen Hoover",
+  "genres": [
+    "Thriller",
+    "Mystery"
+  ],
+  "image": "https://m.media-amazon.com/images/I/71o-qUYvuOL._SX522_.jpg",
+  "published_year": 2018
+},
+{
+  "_id": {
+    "$oid": "6aa1201f96ee76674f6dc537"
+  },
+  "title": "The Housemaid",
+  "description": "A gripping thriller about a woman who becomes a housemaid in a wealthy but dangerous household.",
+  "author": "Freida McFadden",
+  "genres": [
+    "Thriller"
+  ],
+  "image": "https://m.media-amazon.com/images/I/91VZotRPO2L._SX522_.jpg",
+  "published_year": 2022
+},
+{
+  "_id": {
+    "$oid": "6aa1201f96ee76674f6dc538"
+  },
+  "title": "Pride and Prejudice",
+  "description": "One of Jane Austen’s most beloved works, Pride and Prejudice, is vividly brought to life by Academy Award nominee Rosamund Pike (Gone Girl). In her bright and energetic performance of this British classic, she expertly captures Austen’s signature wit and tone. Her attention to detail, her literary background, and her performance in the 2005 feature film version of the novel provide the perfect foundation from which to convey the story of Elizabeth Bennet, her four sisters, and the inimitable Mr. Darcy. ",
+  "author": "Jane Austen",
+  "genres": [
+    "Romance",
+    "Classic",
+    "Drama"
+  ],
+  "image": "https://m.media-amazon.com/images/I/71IhiOoxFiL._SL1500_.jpg",
+  "published_year": 1813
+},
+{
+  "_id": {
+    "$oid": "6aa1206e96ee76674f6dc539"
+  },
+  "title": "The Green Mile",
+  "description": "Welcome to Cold Mountain Penitentiary, home to the Depression-worn men of E Block. Convicted killers all, each awaits his turn to walk “the Green Mile,” the lime-colored linoleum corridor leading to a final meeting with Old Sparky, Cold Mountain’s electric chair. Prison guard Paul Edgecombe has seen his share of oddities over the years working the Mile, but he’s never seen anything like John Coffey—a man with the body of a giant and the mind of a child, condemned for a crime terrifying in its violence and shocking in its depravity. And in this place of ultimate retribution, Edgecombe is about to discover the terrible, wondrous truth about John Coffey—a truth that will challenge his most cherished beliefs….",
+  "author": "Stephen King",
+  "genres": [
+    "Drama",
+    "Mystery"
+  ],
+  "image": "https://m.media-amazon.com/images/I/91sXj+Sk4pL._SL1500_.jpg",
+  "published_year": 1996
+},
+{
+  "_id": {
+    "$oid": "6aa1206e96ee76674f6dc53a"
+  },
+  "title": "Romeo and Juliet",
+  "description": "In Romeo and Juliet, Shakespeare creates a violent world, in which two young people fall in love. It is not simply that their families disapprove; the Montagues and the Capulets are engaged in a blood feud.",
+  "author": "William Shakespeare",
+  "genres": [
+    "Classic",
+    "Drama"
+  ],
+  "image": "https://m.media-amazon.com/images/I/917ugcwNFsL._SL1500_.jpg",
+  "published_year": 1597
+},
+{
+  "_id": {
+    "$oid": "6aa1206e96ee76674f6dc53b"
+  },
+  "title": "Rita Hayworth and Shawshank Redemption",
+  "description": "In the most satisfying tale of unjust imprisonment and offbeat escape since The Count of Monte Cristo, new and established King fans alike are swept away to King's mythical Maine woodland of Castle Rock for this suspenseful, mysterious, and ultimately heartfelt story of an innocent convict seeking a startling revenge. Even among King's uniformly beloved and ubiquitous works of fiction, this short story stands out for its unforgettable characters and as the inspiration for the Academy Award–nominated film The Shawshank Redemption. This modern classic is as fresh today as it was in 1982, when it was published alongside \"The Body,\" \"Art Pupil,\" and \"The Breathing Method\" in Different Seasons.",
+  "author": "Stephen King",
+  "genres": [
+    "Drama",
+    "Classic"
+  ],
+  "image": "https://m.media-amazon.com/images/I/81gCTtrFH4L._SL1500_.jpg",
+  "published_year": 1982
+},
+{
+  "_id": {
+    "$oid": "6aa937404284cf5924532604"
+  },
+  "title": "Test Book Updated AGAIN",
+  "description": "A book created to test the API. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem sit amet leo facilisis placerat. Integer vel augue non justo tincidunt luctus. Curabitur ac nibh sed urna fermentum aliquet.",
+  "author": "Admin updated",
+  "genres": [
+    "Fantasy",
+    "Comedy"
+  ],
+  "image": "https://images.pexels.com/photos/46274/pexels-photo-46274.jpeg",
+  "published_year": 2027,
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "6aaa47f25f0f60fe8820beb6"
+  },
+  "title": "Testing create",
+  "description": "Testing to make a new book. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem sit amet leo facilisis placerat. Integer vel augue non justo tincidunt luctus. Curabitur ac nibh sed urna fermentum aliquet.",
+  "author": "Admin Emilia",
+  "genres": [
+    "Fantasy Drama Thriller"
+  ],
+  "image": "https://images.pexels.com/photos/1112048/pexels-photo-1112048.jpeg",
+  "published_year": 2026,
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "6aaa4a0e5f0f60fe8820bee1"
+  },
+  "title": "New Book testing",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel urna at sapien suscipit tincidunt. Suspendisse potenti. Donec non velit ac nisi gravida dictum. Sed ut arcu nec ipsum viverra aliquet. Duis euismod, lorem id facilisis pharetra, justo velit cursus odio, vitae pulvinar massa lorem non velit.",
+  "author": "Bengt Bengtsson",
+  "genres": [
+    "Comedy Romance"
+  ],
+  "image": "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg",
+  "published_year": 2025,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aab9bbfd679e9c7ff030b6e"
+  },
+  "title": "New book for testing",
+  "description": "Testin testing",
+  "author": "Johan Johansson",
+  "genres": [
+    "Comedy"
+  ],
+  "image": "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg",
+  "published_year": 2026,
+  "__v": 0
+}]
