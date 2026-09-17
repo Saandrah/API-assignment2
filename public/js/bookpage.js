@@ -34,7 +34,7 @@ function renderBook(book) {
       </div>
     </div>
 
-    <a href="index.html" class="btn btn-info mt-3">Back to books</a>
+    <a href="index.html" class="btn btn-light mt-3 btn-shadow">← Back to books</a>
   `;
 }
 
