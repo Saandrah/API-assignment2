@@ -59,6 +59,10 @@ async function loadBooks() {
   renderBooks(books);
 }
 
+// ---------------------------------------
+// RENDER BOOKS & BUTTONS FOR ADMIN PANEL
+// ---------------------------------------
+
 function renderBooks(books) {
   booksContainer.innerHTML = `
     <button
@@ -95,7 +99,7 @@ function renderBooks(books) {
           </div>
         </div>
 
-        <!-- Admin buttons -->
+        <!-- ADMIN BUTTONS -->
 
         <div class=" admin-buttons">
 
@@ -133,9 +137,9 @@ document.getElementById("back-to-admin-panel").addEventListener("click", () => {
   window.location.href = "admin-panel.html"; // eller index.html beroende på din struktur
 });
 
-//---------------------------
+//----------------------------------------------------
 // CREATE BOOK FUNCTION - BUTTON CLICK EVENT LISTENER
-//---------------------------
+//----------------------------------------------------
 
 document.addEventListener("click", (event) => {
   if (event.target.id === "create-book-btn") {
@@ -280,21 +284,21 @@ function validateCreateForm() {
   };
 }
 
-//---------------------------
+//---------------------------------
 // CREATE BOOK FUNCTION - API CALL
-//---------------------------
+//---------------------------------
 
 async function createBook() {
   const newBook = validateCreateForm();
-  if (!newBook) return; // validation already showed error message
+  if (!newBook) return;
 
   try {
     const response = await fetch(`${API_URL}/books`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
+      credentials: "include",
       body: JSON.stringify(newBook),
     });
 
@@ -412,9 +416,6 @@ function renderEditTable(oneBook) {
 //-----------------------------------
 // SAVE CHANGES- UPDATE BOOK FUNCTION
 //-----------------------------------
-//On correct update show a success message and redirect back to admin page after 3 seconds
-// TO-DO: If not all fields the updateMessageBox will show an err message: !All fields must be filled out"
-//TO-DO: If no fields have been changed the updateMessageBox will show an err message: "No changes have been made to the book."
 
 async function updateBook(bookId) {
   const updatedBook = {
@@ -497,7 +498,7 @@ async function deleteBook(bookId) {
   }
 }
 
-//Add scroll for msgbox when delete button is clicked
+//Add scroll for messagebox when delete button is clicked
 function showConfirmDeleteMsg(bookId) {
   const deleteBox = document.getElementById(`confirm-${bookId}`);
   deleteBox.classList.remove("d-none");
