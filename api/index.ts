@@ -90,7 +90,9 @@ mongoose.connect(process.env.MONGODB_URL || "");
 
 
 // Start the express server
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  const PORT = 3000;
+  app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+  });
+};

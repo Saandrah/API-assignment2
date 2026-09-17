@@ -47,3 +47,7 @@ In the era of artificial intelligence and LLM:s, I remain committed to disclose 
 - Restyle admin panel & admin manage users page to be more consistent with our mutual design philosophy.
 - Revert admin manage users page to only allow admins to access, redirecting non-admins back to landing page. The previous mentioned bugs is no longer any concern.
 - Added confirm delete user in admin manage users page, to be more consistent with our mutual design philosophy and to introduce better UX.
+
+16 september:
+- CSS fine adjustment for the header.
+- Begin Vercel setup, being the owner of the Github repository.
