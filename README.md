@@ -6,6 +6,7 @@ Table of contents
 - [Developers](#developers)
 - [Preview](#preview)
 - [Technologies](#technologies)
+- [Testdata](#testdata)
 
 ## About
 Bookworm is a directory of books, where visitors can browse books and read reviews. Authenticated users can also write their own reviews for other visitors to see. Bookworm also has an admin feature, where users with admin priviledges can create, edit and delete books and users. Non-admins cannot access the admin panels, as they're hidden. If the user somehow find themselves in an admin panel, the page will block content and redirect them back to the landing page after a countdown.
@@ -51,3 +52,6 @@ Admin users manager
 - HTML, JavaScript, CSS
 - Github
 - Vercel
+
+## Testdata
+Note: Test mock data can be found inside the MongoDB-json directory
