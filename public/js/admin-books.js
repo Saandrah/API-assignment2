@@ -82,7 +82,7 @@ function renderBooks(books) {
           </div>
 
           <!-- Text -->
-          <div style="max-width: 600px;">
+          <div style="max-width: 900px;">
             <h3 class="mb-2"><strong>${book.title}</strong></h3>
             <p class="mb-1"><strong>Author:</strong> ${book.author}</p>
             <p class="mb-1"><strong>Description:</strong> ${book.description}</p>
@@ -104,8 +104,8 @@ function renderBooks(books) {
             Delete book
           </button>
 
-          <div class="alert alert-danger mt-2 d-none" id="confirm-${book._id}">
-            <p class="mb-2">Are you sure you want to delete this book?</p>
+          <div class="alert alert-danger mt-2 d-none text-center" id="confirm-${book._id}">
+            <p class="mb-3">Do you want to delete the book?</p>
             <button class="btn btn-danger btn-sm me-2" onclick="confirmDelete('${book._id}')">Yes</button>
             <button class="btn btn-secondary btn-sm" onclick="cancelDelete('${book._id}')">Cancel</button>
           </div>
@@ -301,10 +301,10 @@ async function createBook() {
 
     showCreateMessage("Book created successfully!", "success");
 
-    // Redirect after 3 seconds
+    // Redirect after 2 seconds
     setTimeout(() => {
       loadBooks();
-    }, 3000);
+    }, 2000);
   } catch (error) {
     console.error("Error creating book:", error);
     showCreateMessage("Unexpected error while creating book.", "danger");
@@ -441,14 +441,14 @@ async function updateBook(bookId) {
     const updateMessageBox = document.getElementById(`update-${bookId}`);
     updateMessageBox.innerHTML = `
       <div class="alert alert-success mt-2">
-        <strong>The book has been updated successfully.</strong>
+        <strong>Book updated successfully!</strong>
       </div>
     `;
 
     setTimeout(() => {
       updateMessageBox.classList.add("d-none");
       backToAdmin();
-    }, 3000);
+    }, 2000);
   } catch (error) {
     console.error(error);
     alert("Something went wrong.");
@@ -479,22 +479,29 @@ async function deleteBook(bookId) {
     const deleteMessageBox = document.getElementById(`confirm-${bookId}`);
     deleteMessageBox.innerHTML = `
       <div class="alert alert-success mt-2">
-        <strong>The book has been deleted successfully.</strong>
+        <strong>The book has been deleted.</strong>
       </div>
     `;
 
     setTimeout(() => {
       deleteMessageBox.classList.add("d-none");
       loadBooks();
-    }, 3000);
+    }, 2000);
   } catch (error) {
     console.error(error);
     alert("Something went wrong.");
   }
 }
 
+//Add scroll for msgbox when delete button is clicked
 function showConfirmDeleteMsg(bookId) {
-  document.getElementById(`confirm-${bookId}`).classList.remove("d-none");
+  const deleteBox = document.getElementById(`confirm-${bookId}`);
+  deleteBox.classList.remove("d-none");
+
+  deleteBox.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
 }
 
 function cancelDelete(bookId) {
