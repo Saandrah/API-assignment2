@@ -1,7 +1,6 @@
-//-------------------
+//-----------------------
 //CREATE BOOK CONTAINER
-//--------------------
-//Create container to hold the books from the API in order to display them on the page
+//-----------------------
 
 const booksContainer = document.getElementById("book-container");
 
