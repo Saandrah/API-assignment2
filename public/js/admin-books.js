@@ -68,7 +68,7 @@ function renderBooks(books) {
   booksContainer.innerHTML += books
     .map(
       (book) => `
-      <div class="d-flex gap-4 mb-4 p-3 border rounded align-items-start admin-book-card">
+      <div class="d-flex gap-4 mb-4 p-3 align-items-start admin-book-card">
 
         <div class="d-flex gap-4 admin-book-content">
           <!-- Book Thumbnail -->

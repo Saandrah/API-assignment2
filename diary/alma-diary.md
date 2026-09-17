@@ -51,3 +51,8 @@ In the era of artificial intelligence and LLM:s, I remain committed to disclose 
 16 september:
 - CSS fine adjustment for the header.
 - Begin Vercel setup, being the owner of the Github repository.
+
+17 september:
+- Finalize the Vercel production link and connection.
+- Write readme.
+- Minor final adjustments.
