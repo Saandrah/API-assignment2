@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "6aa133fbf520bbe62db483e0"
+  },
+  "username": "admin1",
+  "password": "$2b$10$PN6lqBaegH/YEg9oEYU3C.jO4R4ndNKKaZ9LjuoLmdVfP6U.B1T52",
+  "is_admin": true,
+  "created_at": {
+    "$date": "2026-09-09T10:24:59.712Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aa2c8e84ed2f80af2954261"
+  },
+  "username": "admin3",
+  "password": "$2b$10$0Orx5SbsMQM/av.ywXGsyu5t/r5HGJtpYYvR54AY.SQCjHXEZJuz6",
+  "is_admin": true,
+  "created_at": {
+    "$date": "2026-09-10T15:12:40.941Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aa2f927317df8baf6108784"
+  },
+  "username": "admin2",
+  "password": "$2b$10$ZQydm1gBQEMutVLJUrfI9uCr6UVu/rupqSgxUfEqcLcODgb/mbL7a",
+  "is_admin": true,
+  "created_at": {
+    "$date": "2026-09-10T18:38:31.447Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aa6eaa1f301f5cf5dfae86d"
+  },
+  "username": "testuser1",
+  "password": "$2b$10$DHqDvc5K41FtEspdccsuO.iDtqbsEEEuAPt3n25rgBXkjSsiV6qyK",
+  "is_admin": false,
+  "created_at": {
+    "$date": "2026-09-13T18:25:37.868Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aa7b7a4faf473e907196b68"
+  },
+  "username": "testuser3",
+  "password": "$2b$10$1lNCREiJ5LSbJ05BxEP8ieTNsa/FQ0i7Cb9ZNeU9gCxTszqLwegWy",
+  "is_admin": false,
+  "created_at": {
+    "$date": "2026-09-14T09:00:20.418Z"
+  },
+  "__v": 0
+}]

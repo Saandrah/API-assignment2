@@ -1,0 +1,123 @@
+[{
+  "_id": {
+    "$oid": "6aa3f339fd5c71574a5734c4"
+  },
+  "name": "Astrid",
+  "content": "Konstig Bok!",
+  "rating": 2,
+  "review_id": {
+    "$oid": "6aa1206e96ee76674f6dc53b"
+  },
+  "created_at": {
+    "$date": "2026-09-11T12:25:29.570Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aa7bf10c8d3f66b13b32b65"
+  },
+  "name": "Sandra",
+  "content": "Jättebra bok!",
+  "rating": 5,
+  "review_id": {
+    "$oid": "6aa7bf10c8d3f66b13b32b64"
+  },
+  "book_id": {
+    "$oid": "6aa1206e96ee76674f6dc53b"
+  },
+  "created_at": {
+    "$date": "2026-09-14T09:32:00.648Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aaa5bda18837eae56bf43f5"
+  },
+  "name": "Sandra Hellström",
+  "content": "Den var lite tråkig",
+  "rating": 2,
+  "review_id": {
+    "$oid": "6aaa5bda18837eae56bf43f4"
+  },
+  "book_id": {
+    "$oid": "6aa1201f96ee76674f6dc534"
+  },
+  "created_at": {
+    "$date": "2026-09-16T09:05:30.026Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aaa5c0918837eae56bf43fc"
+  },
+  "name": "Lisa",
+  "content": "Jag tyckte om boken",
+  "rating": 4,
+  "review_id": {
+    "$oid": "6aaa5c0918837eae56bf43fb"
+  },
+  "book_id": {
+    "$oid": "6aa1201f96ee76674f6dc535"
+  },
+  "created_at": {
+    "$date": "2026-09-16T09:06:17.529Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aaa5cb218837eae56bf4401"
+  },
+  "name": "Kalle",
+  "content": "Jag tyckte boken var bra!",
+  "rating": 3,
+  "review_id": {
+    "$oid": "6aaa5cb218837eae56bf4400"
+  },
+  "book_id": {
+    "$oid": "6aa1201f96ee76674f6dc535"
+  },
+  "created_at": {
+    "$date": "2026-09-16T09:09:06.903Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aaa5d7118837eae56bf4409"
+  },
+  "name": "Sven",
+  "content": "Mycket bra!",
+  "rating": 5,
+  "review_id": {
+    "$oid": "6aaa5d7118837eae56bf4408"
+  },
+  "book_id": {
+    "$oid": "6aa1201f96ee76674f6dc535"
+  },
+  "created_at": {
+    "$date": "2026-09-16T09:12:17.783Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6aaa5e6e18837eae56bf4419"
+  },
+  "name": "My",
+  "content": "Älskar",
+  "rating": 5,
+  "review_id": {
+    "$oid": "6aaa5e6e18837eae56bf4418"
+  },
+  "book_id": {
+    "$oid": "6aa1201f96ee76674f6dc537"
+  },
+  "created_at": {
+    "$date": "2026-09-16T09:16:30.022Z"
+  },
+  "__v": 0
+}]
