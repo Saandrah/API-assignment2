@@ -10,4 +10,6 @@ Monday 14/9-2026
 
 Today I continued working on my part of the project, Reviews. I completed the connection between books and reviews in the backend and tested that the correct reviews are retrieved for a specific book.
 
-Tuesday 15/9-2026
+Tuesday to thursday 15/9-2026 - 17/9-2026
+
+I worked on the frontend book page, created a form for submitting new reviews, and styled how the reviews are displayed. I made sure that newly submitted reviews are saved in the database and appear on the page.
