@@ -34,13 +34,13 @@ async function updateNavbar() {
     document.getElementById("linkToRegister").remove();
   } else {
     document.getElementById("linkToAuth").textContent = "Login";
-  };
+  }
   if (await checkUserIsAdmin()) {
     const adminPanelLink = document.createElement("a");
     adminPanelLink.textContent = "Admin panel";
     adminPanelLink.href = "admin-panel.html";
     document.querySelector("nav").append(adminPanelLink);
-  };
+  }
 }
 
 function initializeApp() {
@@ -55,7 +55,7 @@ async function fetchBooks() {
     return await response.json();
   } catch (error) {
     console.error("Error fetching books:", error);
-    return [];
+    return null;
   }
 }
 
@@ -67,7 +67,8 @@ function showAdminWarning() {
 
   const adminWarningText = document.createElement("p");
   adminWarningText.classList.add("fs-4");
-  adminWarningText.textContent = "You must be logged in as an admin to access this page.";
+  adminWarningText.textContent =
+    "You must be logged in as an admin to access this page.";
 
   const redirectText = document.createElement("p");
   redirectText.textContent = "Redirecting to the homepage in ";
@@ -89,4 +90,4 @@ function showAdminWarning() {
   }, 1000);
 
   return container;
-};
+}
