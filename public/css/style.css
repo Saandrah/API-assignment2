@@ -32,10 +32,7 @@
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3 {
   font-family: "Yusei Magic", sans-serif;
 }
 
@@ -73,4 +70,36 @@ nav a {
   font-size: 1.2rem;
   font-weight: 600;
   text-decoration: none;
+}
+.book-details {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.book-image {
+  width: 250px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.review-card {
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.book-details h2 {
+  margin-bottom: 16px;
+  font-size: 2rem;
+}
+
+.book-details p {
+  line-height: 1.6;
+  font-size: 1.6rem;
 }
