@@ -49,8 +49,7 @@ function renderReviews(reviews) {
         ? "<p>No reviews yet.</p>"
         : reviews
             .map(
-              (review) => `
-                <div class="border rounded p-3 mb-3">
+              (review) =>` <div class="review-card">
                   <h4>${review.name}</h4>
                   <p>${review.content}</p>
                   <p><strong>Rating:</strong> ${review.rating}/5</p>
@@ -105,10 +104,44 @@ bookContainer.innerHTML += `
   `;
     const reviewForm = document.getElementById("review-form");
     console.log("FORM:", reviewForm);
-    reviewForm.addEventListener("submit", (event) => {
+    reviewForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    console.log("review-form submitted");
+      const name = document.getElementById("review-name").value.trim();
+      const content = document.getElementById("review-content").value.trim();
+      const rating = parseInt(document.getElementById("review-rating").value.trim());
+
+      if (!name || !content || isNaN(rating) || rating < 1 || rating > 5) {
+        console.error("Invalid review data");
+        return;
+      }
+
+  const review = {
+  name,
+  content,
+  rating,
+  book_id: bookId,
+};
+
+      try {
+        const response = await fetch(API_URL + "/reviews", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(review),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to submit review");
+        }
+
+        const data = await response.json();
+        console.log("Review submitted:", data);
+        await fetchBook(); // Refresh the book and reviews
+      } catch (error) {
+        console.error("Error submitting review:", error);
+      }
     });
 }
 
