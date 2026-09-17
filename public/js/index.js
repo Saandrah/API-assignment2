@@ -8,17 +8,26 @@ const booksContainer = document.getElementById("book-container");
 // -------------------------------------------------
 // FETCH BOOKS USING GLOBAL FUNCTION FROM global.js
 // ---------------------------------------------------
+//API error (fetchBooks returns null) or empty database showw error message to user.
+//if there are no books in the database, show message to user.
+//If books are returned, render them on the page using renderBooks function.
 
 async function loadBooks() {
   const books = await fetchBooks();
 
-  if (books.length === 0) {
+  if (books === null) {
     booksContainer.innerHTML = "Something went wrong. Please try again later!";
+    return;
+  }
+
+  if (books.length === 0) {
+    booksContainer.innerHTML = "There are no books to view.";
     return;
   }
 
   renderBooks(books);
 }
+
 loadBooks();
 
 // ---------------------------

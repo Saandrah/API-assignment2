@@ -39,7 +39,7 @@ function renderAdminWarning() {
   alertContainer.appendChild(warning);
 }
 
-// -------------------------------------------------------------------------------
+/// -------------------------------------------------------------------------------
 // FETCH BOOKS FROM API TO HANDLE ADMIN BOOKS USING GLOBAL FUNCTION FROM global.js
 // -------------------------------------------------------------------------------
 
@@ -47,8 +47,12 @@ async function loadBooks() {
   document.getElementById("back-to-admin-panel").style.display = "block";
   const books = await fetchBooks();
 
-  if (books.length === 0) {
-    booksContainer.innerHTML = "Something went wrong. Please try again later!";
+  if (books === null) {
+    booksContainer.innerHTML = `
+      <div class="alert alert-danger">
+        Something went wrong. Please try again later!
+      </div>
+    `;
     return;
   }
 
