@@ -36,6 +36,40 @@ h3 {
   font-family: "Yusei Magic", sans-serif;
 }
 
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+/*********************************************
+   MOBILE LAYOUT: BOOK CARD (max-width: 460px)
+/*********************************************/
+/*-------------------------------------------
+   - Stack image, text, and button vertically
+   - Move text above the image+button column (div:first-child) order: 1
+   - Move image+button column (div:last-child) order: 2
+------------------------------------------- */
+@media (max-width: 460px) {
+  .book-card {
+    flex-direction: column !important;
+  }
+
+  .book-card > div:last-child {
+    order: 1;
+  }
+
+  .book-card > div:first-child {
+    order: 2;
+  }
+
+  .book-card a.btn {
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+
+
+
+
 main {
   margin-top: 120px;
 }

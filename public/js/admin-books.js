@@ -44,6 +44,7 @@ function renderAdminWarning() {
 // -------------------------------------------------------------------------------
 
 async function loadBooks() {
+  document.getElementById("back-to-admin-panel").style.display = "block";
   const books = await fetchBooks();
 
   if (books.length === 0) {
@@ -67,29 +68,32 @@ function renderBooks(books) {
   booksContainer.innerHTML += books
     .map(
       (book) => `
-      <div class="d-flex gap-4 mb-4 p-3 border rounded align-items-start">
+      <div class="d-flex gap-4 mb-4 p-3 border rounded align-items-start admin-book-card">
 
-        <!-- Book Thumbnail -->
-        <div class="d-flex flex-column">
-          <img 
-            src="${book.image}" 
-            alt="${book.title}" 
-            class="book-thumb book-btn-shadow mb-2"
-            style="max-width: 120px;"
-          />
-        </div>
+        <div class="d-flex gap-4 admin-book-content">
+          <!-- Book Thumbnail -->
+          <div class="d-flex flex-column">
+            <img 
+              src="${book.image}" 
+              alt="${book.title}" 
+              class="book-thumb book-btn-shadow mb-2"
+              style="max-width: 120px;"
+            />
+          </div>
 
-        <!-- Text -->
-        <div style="max-width: 600px;">
-          <h3 class="mb-2"><strong>${book.title}</strong></h3>
-          <p class="mb-1"><strong>Author:</strong> ${book.author}</p>
-          <p class="mb-1"><strong>Description:</strong> ${book.description}</p>
-          <p class="mb-1"><strong>Genres:</strong> ${Array.isArray(book.genres) ? book.genres.join(", ") : book.genres}</p>
-          <p class="mb-1"><strong>Published Year:</strong> ${book.published_year}</p>
+          <!-- Text -->
+          <div style="max-width: 900px;">
+            <h3 class="mb-2"><strong>${book.title}</strong></h3>
+            <p class="mb-1"><strong>Author:</strong> ${book.author}</p>
+            <p class="mb-1"><strong>Description:</strong> ${book.description}</p>
+            <p class="mb-1"><strong>Genres:</strong> ${Array.isArray(book.genres) ? book.genres.join(", ") : book.genres}</p>
+            <p class="mb-1"><strong>Published Year:</strong> ${book.published_year}</p>
+          </div>
         </div>
 
         <!-- Admin buttons -->
-        <div class="d-flex flex-column align-items-end" style="width: 180px;">
+
+        <div class=" admin-buttons">
 
           <button class="btn btn-info w-100 mb-2 book-btn-shadow" onclick="startEditBook('${book._id}')">Edit book</button>
 
@@ -100,8 +104,8 @@ function renderBooks(books) {
             Delete book
           </button>
 
-          <div class="alert alert-danger mt-2 d-none" id="confirm-${book._id}">
-            <p class="mb-2">Are you sure you want to delete this book?</p>
+          <div class="alert alert-danger mt-2 d-none text-center" id="confirm-${book._id}">
+            <p class="mb-3">Do you want to delete the book?</p>
             <button class="btn btn-danger btn-sm me-2" onclick="confirmDelete('${book._id}')">Yes</button>
             <button class="btn btn-secondary btn-sm" onclick="cancelDelete('${book._id}')">Cancel</button>
           </div>
@@ -114,12 +118,16 @@ function renderBooks(books) {
 }
 
 //---------------------------
-//BACK BUTTON FUNCTION
+//BACK BUTTONS
 //---------------------------
 
 function backToAdmin() {
   loadBooks();
 }
+
+document.getElementById("back-to-admin-panel").addEventListener("click", () => {
+  window.location.href = "admin-panel.html"; // eller index.html beroende på din struktur
+});
 
 //---------------------------
 // CREATE BOOK FUNCTION - BUTTON CLICK EVENT LISTENER
@@ -142,8 +150,9 @@ document.addEventListener("click", (event) => {
 //---------------------------
 
 function renderCreateForm() {
+  document.getElementById("back-to-admin-panel").style.display = "none";
   booksContainer.innerHTML = `
-    <div class="w-50" style="max-width: 600px;">
+    <div id="create-book-container" class="p-4 border rounded">
       <h3 class="mt-4">Create New Book</h3>
 
       <form id="create-book-form" class="mt-3">
@@ -182,7 +191,7 @@ function renderCreateForm() {
 
       <div class="d-flex gap-3 mt-3 justify-content-between align-items-center">
         <button class="btn btn-outline-dark rounded-3 px-3 book-btn-shadow" onclick="backToAdmin()">← Back</button>
-        <button id="create-book-save-btn" class="btn btn-success book-btn-shadow">Save Book</button>
+        <button id="create-book-save-btn" class="btn btn-primary book-btn-shadow">Save Book</button>
       </div>
 
       <div id="create-message" class="mt-3"></div>
@@ -292,10 +301,10 @@ async function createBook() {
 
     showCreateMessage("Book created successfully!", "success");
 
-    // Redirect after 3 seconds
+    // Redirect after 2 seconds
     setTimeout(() => {
       loadBooks();
-    }, 3000);
+    }, 2000);
   } catch (error) {
     console.error("Error creating book:", error);
     showCreateMessage("Unexpected error while creating book.", "danger");
@@ -346,9 +355,10 @@ async function fetchOneBook(bookId) {
 //---------------------------
 
 function renderEditTable(oneBook) {
+  document.getElementById("back-to-admin-panel").style.display = "none";
   booksContainer.innerHTML = `
 
-  <div class= "w-50" style="max-width: 600px;" >
+  <div id="edit-book-container" class="p-4 border rounded">
 
   <h3 class="mt-4">Edit Book</h3>
   
@@ -431,14 +441,14 @@ async function updateBook(bookId) {
     const updateMessageBox = document.getElementById(`update-${bookId}`);
     updateMessageBox.innerHTML = `
       <div class="alert alert-success mt-2">
-        <strong>The book has been updated successfully.</strong>
+        <strong>Book updated successfully!</strong>
       </div>
     `;
 
     setTimeout(() => {
       updateMessageBox.classList.add("d-none");
       backToAdmin();
-    }, 3000);
+    }, 2000);
   } catch (error) {
     console.error(error);
     alert("Something went wrong.");
@@ -469,22 +479,29 @@ async function deleteBook(bookId) {
     const deleteMessageBox = document.getElementById(`confirm-${bookId}`);
     deleteMessageBox.innerHTML = `
       <div class="alert alert-success mt-2">
-        <strong>The book has been deleted successfully.</strong>
+        <strong>The book has been deleted.</strong>
       </div>
     `;
 
     setTimeout(() => {
       deleteMessageBox.classList.add("d-none");
       loadBooks();
-    }, 3000);
+    }, 2000);
   } catch (error) {
     console.error(error);
     alert("Something went wrong.");
   }
 }
 
+//Add scroll for msgbox when delete button is clicked
 function showConfirmDeleteMsg(bookId) {
-  document.getElementById(`confirm-${bookId}`).classList.remove("d-none");
+  const deleteBox = document.getElementById(`confirm-${bookId}`);
+  deleteBox.classList.remove("d-none");
+
+  deleteBox.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
 }
 
 function cancelDelete(bookId) {
