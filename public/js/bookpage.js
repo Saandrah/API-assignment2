@@ -49,8 +49,7 @@ function renderReviews(reviews) {
         ? "<p>No reviews yet.</p>"
         : reviews
             .map(
-              (review) => `
-                <div class="border rounded p-3 mb-3">
+              (review) =>` <div class="review-card">
                   <h4>${review.name}</h4>
                   <p>${review.content}</p>
                   <p><strong>Rating:</strong> ${review.rating}/5</p>
