@@ -120,14 +120,22 @@ Weekly plan:
 
 ## 16 sept 
 
-### Helena 
-- created the functions to the save button with error and success messages and validations, and formatting (ex. capital letters) 
-
 ### GROUP MEETING
 
 - Showed progress and merged code
 - Suggest to use the shadow I created in styles.css to be used on all books and buttons for cohesive apperance
 - Found a new font in google fonts to be used in H1-H6 for a more modern look
+
+### Helena 
+- created the functions to the save button with error and success messages and validations, and formatting (ex. capital letters)
+- Worked with styling and css. Added responsive design and layout to admin-books for the book view, edit and create - desktop, 992px, and 768px which is also the mobile view. 
+- added a back button to admin panel that only shows when on the page showing books, is hidden on create and edit
+- added a mobile view responsive design for the main book page on index.html. 
+
+## 17 sept 
+
+### GROUP MEETING
+
 
 
 
