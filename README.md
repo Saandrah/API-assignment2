@@ -13,9 +13,9 @@ Table of contents
 Bookworm is a directory of books, where visitors can browse books and read reviews. Any visitor can write their own reviews for other visitors to see. Bookworm also has an admin feature, where users with admin priviledges can create, edit and delete books and users. Non-admins cannot access the admin panels, as they're hidden. If the user somehow find themselves in an admin panel, the page will block content and redirect them back to the landing page after a countdown.
 
 ## Developers
-- Helena Gustafsson
-- Sandra Hellström
-- Alma Isaksson
+- Helena Gustafsson, responsible for books (API, connection, client)
+- Sandra Hellström, responsible for reveiws (API, connection, client)
+- Alma Isaksson, responsible for users (API, connection, client)
 
 ## Preview
 Landing page
