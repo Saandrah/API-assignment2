@@ -45,6 +45,9 @@ Admin books manager edit mode
 Admin users manager
 ![Admin users manager screenshot](./readme-images/admin-users-manager.png)
 
+Admin user is not admin
+![Non admin screenshot](./readme-images/non-admin.png)
+
 ## Technologies
 - TypeScript & Node
 - Express
@@ -113,3 +116,32 @@ The admin system provides clear feedback for all actions:
 - Success alerts for create, update and delete operations.
 - Confirmation boxes for delete actions.
 - Timeouts and redirects for improved user experience.
+
+### User management (CRUD)
+
+#### Read all:
+The user management fetch all users, then store the fetched data in a variable state, using Map "usersData", with each user's ID as the Map key. All data, besides password are retrieved.
+
+#### Create:
+User creation is done through the register form page. If the user is authenticated, they must first logout to see the link to the registration page in the GUI.
+
+- Error messages for invalid input. Specified message and status code is provided by the backend.
+- Successful registration redirects the user to the landing page, authenticated as the new user.
+- New user is regular user by default.
+
+### Edit:
+Target user's data is fetched from the "usersData" Map. By default, the edit fields hold current username as placeholder, and their admin state as a checkmark. Password is left out. The backend edit existing users with PATCH, meaning only specified fields in the body are edited, whereas the unspeficied remain untouched. Admin could for instance leave new username and new password blank, but toggle user's admin state, without seeing a complain.
+
+The editor can store multiple drafts within the same page. The "editUsersData" Map makes a copy of its equivalent user, allowing itself to be mutated, until admin either save or discards. On cancel revert back to the original "usersData" Map, on save overwrites the original "usersData" after making changes to the backend. Both save and discard drops its equivalent "edutUsersData".
+
+- Admin can hold up to every user in edit mode, where multiple drafts are isolated. Saving or discarding changes on one user does not affect the rest of the page.
+- Error messages for invalid input are displayed at the centre-top, if the field is touched at all.
+- Successful editing display ok message at the centre-top, and exit edit mode for that user, with updated data.
+- On cancel exit edit mode on that user, reverting back the GUI with its original state.
+
+### Delete:
+Delete behaves in a similar way as editing with its isolated DOM. The delete button cannot be accessed in edit mode. For safety, admin must confirm their intention. The actual delete button does not exist in the DOM until admin clicks a button that triggers JavaScript to append the actual delete button. The "usersData" Map also holds a state if the confirm delete DOM is open or not, preventing admin to append an infinite ammount of confirm deletion DOM:s.
+
+- Clicking `"Delete <username>"` reveal a new DOM with confirm and cancel button.
+- Clicking cancel on the confirm DOM removes the confirm deletion DOM.
+- Clicking delete on the confirm DOM removes the user from the backend, then removes the entire table-row belonging to that user.

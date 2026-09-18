@@ -56,3 +56,6 @@ In the era of artificial intelligence and LLM:s, I remain committed to disclose 
 - Finalize the Vercel production link and connection.
 - Write readme.
 - Minor final adjustments.
+
+18 sep:
+- Document the admin users page.
