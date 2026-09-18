@@ -136,6 +136,32 @@ Weekly plan:
 
 ### GROUP MEETING
 
+- Vercel live setting
+- Added basic styling in CSS
+- Merging pull requests
+- Exporting data base files (Sandra to upload)
+- Discussing presentation
+
+### Helena 
+
+- Added another layer of error messages - if no books are in data base - show message
+- Code clean up /comment clean up
+- Presentation planning
+
+## 18 sept 
+
+### PRESENTATION!!!!
+
+### Helena
+
+- Presented to class
+- Final code review/comment clean up
+- Added readme (Technical details for book-admin page)
+- Pics for readme
+
+# YEY!!!!! DONE!!!! ✨🎊🥳💫
+  
+
 
 
 
