@@ -58,5 +58,58 @@ Admin users manager
 Note: Test mock data can be found inside the MongoDB-json directory
 
 ## Technical Details
-### (technical thing title)
-(technical thing text)
+
+### Admin Authentication & Access Control
+
+The admin book manager is protected by authentication and role‑based access.
+Only logged‑in admin users can view, create, edit or delete books.
+Non‑admins are blocked from the page, shown a clear error message, and automatically redirected after a short countdown to main page (index.html).
+
+### Book Management (CRUD)
+Admin users can manage books through a fully dynamic interface:
+
+#### Create:
+
+- All fields validated (title, author, description, genres, year, image)
+- Inputs trimmed and normalized.
+- Genres converted into a clean array.
+- Published year validated as a number.
+- Success message displayed, followed by a timed redirect back to the admin panel showing books.
+
+#### Edit:
+
+- All fields pre‑filled with backend data.
+- Changes saved via a PATCH request
+- Success message shown before returning to the admin panel with timer.
+
+#### Delete:
+
+- Delete actions require confirmation through a visible confirmation box.
+- Smooth scroll ensures the box is visible.
+- Success message displayed, followed by a timed reload of the book list.
+
+#### Dynamic Rendering & UI Behavior
+The admin interface is rendered dynamically with JavaScript:
+
+- Book lists and forms generated using .map().join("").
+- Dynamic button visibility: admin‑specific buttons such as Back to Panel and Create New Book are shown or hidden depending on whether the user is viewing, creating or editing a book.
+- Responsive layout adapts images, tables, buttons and message boxes to screen size.
+- Consistent design across all pages/views.
+
+#### Validation & Data Normalization
+To ensure consistent data quality:
+
+- All text fields trimmed.
+- Titles and descriptions capitalized.
+- Authors and genres capitalize each word.
+- Genres split and cleaned into arrays.
+- Published year converted to a number before saving.
+
+#### User Feedback & Error Handling
+The admin system provides clear feedback for all actions:
+
+- Error messages for invalid input, missing fields or failed API calls.
+- Error message + redirect for unauthorized users.
+- Success alerts for create, update and delete operations.
+- Confirmation boxes for delete actions.
+- Timeouts and redirects for improved user experience.
